@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="EMS.Views.Company.CompanyView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EMS.Views.Company"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:section="using:EMS.Controls.Section"
+    xmlns:windowTitle="using:EMS.Controls.WindowTitle"
+    xmlns:details="using:EMS.Views.Company.Details"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <windowTitle:WindowTitle Title="{x:Bind ViewModel.Title, Mode=OneWay}" />
+
+        <section:Section IsEnabled="{x:Bind ViewModel.IsEnabled, Mode=OneWay}"
+                         Style="{StaticResource DetailsViewSection}">
+            <details:CompanyDetails x:Name="details" ViewModel="{x:Bind ViewModel, Mode=OneWay}" />
+        </section:Section>
+    </Grid>
+</Page>

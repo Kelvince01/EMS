@@ -1,0 +1,70 @@
+﻿<UserControl
+    x:Class="EMS.Views.Company.Details.CompanyDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EMS.Views.Company.Details"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:converters="using:EMS.Converters" 
+    xmlns:fluidGrid="using:EMS.Controls.FluidGrid" 
+    xmlns:forms="using:EMS.Controls.Forms" 
+    xmlns:details="using:EMS.Views.Employee.Details" 
+    xmlns:details1="using:EMS.Controls.Details" 
+    xmlns:company="using:EMS.ViewModels.ViewModels.Company"
+    mc:Ignorable="d"
+    d:DesignWidth="800" d:DesignHeight="600">
+
+    <UserControl.Resources>
+        <converters:BindingTypeConverter x:Key="BindingTypeConverter"/>
+        <DataTemplate x:Key="DetailsTemplate" x:DataType="company:CompanyDetailsViewModel">
+            <fluidGrid:FluidGrid Columns="2" ColumnSpacing="12" Margin="12,18,6,6" RowSpacing="12">
+                <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Company Information"/>
+                <forms:FormTextBox Header="Name" fluidGrid:FluidGrid.ColumnSpan="2" Text="{x:Bind EditableItem.Name, Mode=TwoWay}" />
+                <forms:FormCalendarDatePicker Header="Creation Date" Date="{x:Bind EditableItem.CreatedOn, Mode=TwoWay}" />
+                <forms:FormCalendarDatePicker Header="Modified Date" Date="{x:Bind EditableItem.LastModifiedOn, Mode=TwoWay}" />
+                <forms:FormTextBox Header="ABN" Text="{x:Bind EditableItem.ABN, Mode=TwoWay}" />
+                <forms:FormTextBox Header="ACN" Text="{x:Bind EditableItem.ACN, Mode=TwoWay}" />
+                <forms:FormTextBox Header="Description" fluidGrid:FluidGrid.ColumnSpan="2" Text="{x:Bind EditableItem.Description, Mode=TwoWay}" />
+
+                <TextBlock  Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Company Address" />
+                <forms:FormTextBox Header="Title" Text="{x:Bind EditableItem.Address, Mode=TwoWay}" />
+                <forms:FormTextBox Header="Email Address" Text="{x:Bind EditableItem.PhoneNumber, Mode=TwoWay}" />
+                <forms:FormTextBox Header="Phone" Text="{x:Bind EditableItem.Email, Mode=TwoWay}" />
+                <forms:FormTextBox Header="Website" Text="{x:Bind EditableItem.Website, Mode=TwoWay}" />
+                <forms:FormTextBox Header="Contact" Text="{x:Bind EditableItem.Contact, Mode=TwoWay}" />
+                
+                <!--forms:FormComboBox Header="Country" ItemsSource="{x:Bind LookupTables.CountryCodes}" SelectedValue="{x:Bind EditableItem.CountryCode, Mode=TwoWay}" SelectedValuePath="CountryCodeID" DisplayMemberPath="Name" /-->
+
+                <TextBlock  Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Company Demographic"/>
+                <forms:FormTextBox Header="Core Values" Text="" />
+                <fluidGrid:FluidGrid Columns="2" ColumnSpacing="6" RowSpacing="12" MinColumnWidth="80">
+                    <forms:FormTextBox Header="No. of Employees" Text="" />
+                    <forms:FormTextBox Header="Yearly Income" Text="" />
+                </fluidGrid:FluidGrid>
+                
+            </fluidGrid:FluidGrid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderBrush="LightGray" BorderThickness="0,1,1,0" Background="{StaticResource DetailsViewBackgroundColor}">
+            <local:CompanyCard Margin="6" ViewModel="{x:Bind ViewModel}" Item="{x:Bind ViewModel.Item, Mode=OneWay}" />
+        </Border>
+
+        <details1:Details x:Name="details" Grid.Column="1" Margin="6"
+                          DetailsContent="{x:Bind ViewModel}"
+                          DetailsTemplate="{StaticResource DetailsTemplate}"
+                          CanGoBack="{x:Bind ViewModel.CanGoBack}"
+                          IsEditMode="{x:Bind ViewModel.IsEditMode, Mode=OneWay}"
+                          BackCommand="{x:Bind ViewModel.BackCommand}"
+                          EditCommand="{x:Bind ViewModel.EditCommand}"
+                          DeleteCommand="{x:Bind ViewModel.DeleteCommand}"
+                          SaveCommand="{x:Bind ViewModel.SaveCommand}"
+                          CancelCommand="{x:Bind ViewModel.CancelCommand}" />
+    </Grid>
+</UserControl>
