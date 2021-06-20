@@ -184,6 +184,7 @@
     <Compile Include="Extensions\UriExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CompanyService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\DataServiceFactory\DataServiceFactory.cs" />
     <Compile Include="Services\DataServiceFactory\IDataServiceFactory.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\VirtualCollections\CompanyCollection.cs" />
+    <Compile Include="Services\VirtualCollections\CustomerCollection.cs" />
     <Compile Include="Services\VirtualCollections\EmployeeCollection.cs" />
     <Compile Include="Services\VirtualCollections\OrderCollection.cs" />
     <Compile Include="Services\VirtualCollections\ProjectCollection.cs" />
@@ -223,6 +225,27 @@
     </Compile>
     <Compile Include="Views\AppLogs\List\AppLogsList.xaml.cs">
       <DependentUpon>AppLogsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\ChartGanttView.xaml.cs">
+      <DependentUpon>ChartGanttView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\ChartGaugeView.xaml.cs">
+      <DependentUpon>ChartGaugeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\ChartsMainView.xaml.cs">
+      <DependentUpon>ChartsMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\ChartsView.xaml.cs">
+      <DependentUpon>ChartsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\DlhSoftChartGanttView.xaml.cs">
+      <DependentUpon>DlhSoftChartGanttView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\MapsView.xaml.cs">
+      <DependentUpon>MapsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\WebviewView.xaml.cs">
+      <DependentUpon>WebviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Companys\CompanysView.xaml.cs">
       <DependentUpon>CompanysView.xaml</DependentUpon>
@@ -245,11 +268,41 @@
     <Compile Include="Views\Company\Details\CompanyDetails.xaml.cs">
       <DependentUpon>CompanyDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CustomerSuggestBox.xaml.cs">
+      <DependentUpon>CustomerSuggestBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\EmployeeSuggestBox.xaml.cs">
       <DependentUpon>EmployeeSuggestBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\ProjectSuggestBox.xaml.cs">
       <DependentUpon>ProjectSuggestBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customers\CustomersView.xaml.cs">
+      <DependentUpon>CustomersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customers\Details\CustomersCard.xaml.cs">
+      <DependentUpon>CustomersCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customers\Details\CustomersDetails.xaml.cs">
+      <DependentUpon>CustomersDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customers\Details\CustomersOrders.xaml.cs">
+      <DependentUpon>CustomersOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customers\List\CustomersList.xaml.cs">
+      <DependentUpon>CustomersList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Details\CustomerCard.xaml.cs">
+      <DependentUpon>CustomerCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Details\CustomerDetails.xaml.cs">
+      <DependentUpon>CustomerDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard\Parts\CustomersPane.xaml.cs">
+      <DependentUpon>CustomersPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Employees\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
@@ -260,8 +313,8 @@
     <Compile Include="Views\Employees\Details\EmployeesDetails.xaml.cs">
       <DependentUpon>EmployeesDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Employees\Details\EmployeesOrders.xaml.cs">
-      <DependentUpon>EmployeesOrders.xaml</DependentUpon>
+    <Compile Include="Views\Employees\Details\EmployeesProjects.xaml.cs">
+      <DependentUpon>EmployeesProjects.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Employees\List\EmployeesList.xaml.cs">
       <DependentUpon>EmployeesList.xaml</DependentUpon>
@@ -347,6 +400,18 @@
     <Compile Include="Views\Order\OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Payments\Details\CustomersPayment.xaml.cs">
+      <DependentUpon>CustomersPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payments\Details\EmployeesPayment.xaml.cs">
+      <DependentUpon>EmployeesPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payments\Details\PaymentsDashboard.xaml.cs">
+      <DependentUpon>PaymentsDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payments\PaymentsView.xaml.cs">
+      <DependentUpon>PaymentsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Projects\List\ProjectsList.xaml.cs">
       <DependentUpon>ProjectsList.xaml</DependentUpon>
     </Compile>
@@ -361,6 +426,9 @@
     </Compile>
     <Compile Include="Views\Project\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\ReportsView.xaml.cs">
+      <DependentUpon>ReportsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\CreateDatabaseView.xaml.cs">
       <DependentUpon>CreateDatabaseView.xaml</DependentUpon>
@@ -505,6 +573,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Charts\ChartGanttView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\ChartGaugeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\ChartsMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\ChartsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\DlhSoftChartGanttView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\MapsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\WebviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Companys\CompanysView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -533,11 +629,51 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\CustomerSuggestBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\EmployeeSuggestBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\ProjectSuggestBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customers\CustomersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customers\Details\CustomersCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customers\Details\CustomersDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customers\Details\CustomersOrders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customers\List\CustomersList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\CustomerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\Details\CustomerCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Customer\Details\CustomerDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dashboard\Parts\CustomersPane.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -553,7 +689,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Employees\Details\EmployeesOrders.xaml">
+    <Page Include="Views\Employees\Details\EmployeesProjects.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -669,6 +805,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Payments\Details\CustomersPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payments\Details\EmployeesPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payments\Details\PaymentsDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payments\PaymentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Projects\List\ProjectsList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -688,6 +840,10 @@
     <Page Include="Views\Project\ProjectView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reports\ReportsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings\CreateDatabaseView.xaml">
       <SubType>Designer</SubType>
@@ -715,8 +871,26 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="DlhSoft.GanttChartModernLibrary">
+      <Version>5.0.22.41</Version>
+    </PackageReference>
+    <PackageReference Include="LiveCharts">
+      <Version>0.8.0</Version>
+    </PackageReference>
+    <PackageReference Include="LiveCharts.Uwp">
+      <Version>0.8.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
       <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Graph">
+      <Version>3.34.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Identity.Client">
+      <Version>4.32.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
+      <Version>5.2.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
@@ -724,13 +898,34 @@
     <PackageReference Include="Microsoft.Office365.OutlookServices">
       <Version>1.0.41</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="MpesaLib">
+      <Version>3.2.13</Version>
+    </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.26.0</Version>
     </PackageReference>
+    <PackageReference Include="WinRTXamlToolkit.Controls.DataVisualization">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="WinRTXamlToolkit.Controls.DataVisualization.UWP">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="WinRTXamlToolkit.Controls.Gauge.UWP">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="WinRTXamlToolkit.UWP">
+      <Version>2.3.0</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AppLog\AppLog.db" />
+    <None Include="Connected Services\Office365\ConnectedService.json" />
     <None Include="Database\EMS.1.00.db" />
   </ItemGroup>
   <ItemGroup>
@@ -742,6 +937,20 @@
       <Project>{e4a74028-80bb-400a-a0e8-936da3f27959}</Project>
       <Name>EMS.ViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, version=14.0">
+      <Name>Visual C++ 2015-2019 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=19.1.0.63">
+      <Name>Syncfusion Controls for UWP XAML</Name>
+    </SDKReference>
+    <SDKReference Include="Telerik UI For Universal Windows Platform, Version=2021.2.513.45">
+      <Name>Telerik UI For Universal Windows Platform</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Reports\Details\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -19,24 +19,24 @@
             <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.OrderDate, Mode=OneWay, Converter={StaticResource DateTimeFormatConverter}}" />
 
             <Rectangle Style="{StaticResource CardSeparator}"/>
-            <TextBlock Style="{StaticResource CardSection}" Text="Employee"  />
+            <TextBlock Style="{StaticResource CardSection}" Text="Customer"  />
 
             <StackPanel Orientation="Horizontal" Margin="0,6,0,9">
-                <PersonPicture ProfilePicture="{x:Bind Item.Employee.ThumbnailSource, Mode=OneWay, Converter={StaticResource ObjectToImageConverter}}" 
-                           Initials="{x:Bind Item.Employee.Initials, Mode=OneWay}" 
+                <PersonPicture ProfilePicture="{x:Bind Item.Customer.ThumbnailSource, Mode=OneWay, Converter={StaticResource ObjectToImageConverter}}" 
+                           Initials="{x:Bind Item.Customer.Initials, Mode=OneWay}" 
                            Width="{StaticResource CardPictureRadius}" 
                            Height="{StaticResource CardPictureRadius}" />
-                <TextBlock Style="{StaticResource CardText}" VerticalAlignment="Center" Margin="9,0" Text="{x:Bind Item.Employee.FullName, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource CardText}" VerticalAlignment="Center" Margin="9,0" Text="{x:Bind Item.Customer.FullName, Mode=OneWay}" />
             </StackPanel>
 
-            <TextBlock Style="{StaticResource CardHeader}" Text="Employee ID" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.EmployeeID, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardHeader}" Text="Customer ID" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.CustomerID, Mode=OneWay}" />
 
             <TextBlock Style="{StaticResource CardHeader}" Text="Email" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Employee.EmailAddress, Mode=OneWay }" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Customer.EmailAddress, Mode=OneWay }" />
 
             <TextBlock Style="{StaticResource CardHeader}" Text="Phone" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Employee.Phone, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Customer.Phone, Mode=OneWay}" />
 
             <Rectangle Style="{StaticResource CardSeparator}"/>
             <TextBlock Style="{StaticResource CardSection}" Text="Shipment"  />

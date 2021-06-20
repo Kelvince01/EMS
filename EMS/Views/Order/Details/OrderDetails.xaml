@@ -10,7 +10,6 @@
     xmlns:details="using:EMS.Views.Order.Details" 
     xmlns:details1="using:EMS.Controls.Details" 
     xmlns:section="using:EMS.Controls.Section" 
-    xmlns:views="using:EMS.Views" 
     xmlns:controls="using:EMS.Views.Controls" 
     xmlns:details2="using:EMS.Views.Orders.Details"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600">
@@ -18,10 +17,10 @@
     <UserControl.Resources>
         <DataTemplate x:Key="DetailsTemplate" x:DataType="orders:OrderDetailsViewModel">
             <fluidGrid:FluidGrid Margin="12" Columns="2" ColumnSpacing="12" RowSpacing="12">
-                <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Employee Information" />
-                <controls:EmployeeSuggestBox DisplayText="{x:Bind EditableItem.Employee.FullName, Mode=OneWay}"
-                                             EmployeeSelectedCommand="{x:Bind EmployeeSelectedCommand}"
-                                             IsReadOnly="{x:Bind CanEditEmployee, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}" />
+                <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Customer Information" />
+                <controls:CustomerSuggestBox DisplayText="{x:Bind EditableItem.Customer.FullName, Mode=OneWay}"
+                                             CustomerSelectedCommand="{x:Bind CustomerSelectedCommand}"
+                                             IsReadOnly="{x:Bind CanEditCustomer, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}" />
                 <forms:FormTextBox Header="Ship Address" Text="{x:Bind EditableItem.ShipAddress, Mode=TwoWay}" />
                 <fluidGrid:FluidGrid Columns="2" ColumnSpacing="6" RowSpacing="12" MinColumnWidth="120">
                     <forms:FormTextBox Header="Ship Postal Code" Text="{x:Bind EditableItem.ShipPostalCode, Mode=TwoWay}" />

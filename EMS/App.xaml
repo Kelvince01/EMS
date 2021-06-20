@@ -41,7 +41,9 @@
             <converters:LogTypeConverter x:Key="LogTypeConverter" />
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <converters:ObjectToImageConverter x:Key="ObjectToImageConverter" />
-
+            <x:String x:Key="ida:ClientID">70f515e4-3407-4e98-9943-caf941b13076</x:String>
+            <x:String x:Key="ida:AADInstance">https://login.microsoftonline.com/</x:String>
+            <x:String x:Key="ida:Domain">kelvince.onmicrosoft.com</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

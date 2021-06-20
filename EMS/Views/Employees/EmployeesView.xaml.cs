@@ -60,7 +60,7 @@ namespace EMS.Views.Employees
             }
             else
             {
-                await NavigationService.CreateNewViewAsync<OrdersViewModel>(ViewModel.EmployeeOrders.CreateArgs());
+                await NavigationService.CreateNewViewAsync<OrdersViewModel>(ViewModel.EmployeeProjects.CreateArgs());
             }
         }
 

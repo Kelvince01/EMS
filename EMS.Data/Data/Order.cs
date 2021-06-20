@@ -13,7 +13,7 @@ namespace EMS.Data.Data
         public long OrderID { get; set; }
 
         [Required]
-        public long EmployeeID { get; set; }
+        public long CustomerID { get; set; }
 
         [Required]
         public DateTimeOffset OrderDate { get; set; }
@@ -46,9 +46,9 @@ namespace EMS.Data.Data
         public DateTimeOffset LastModifiedOn { get; set; }
         public string SearchTerms { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
 
-        public string BuildSearchTerms() => $"{OrderID} {EmployeeID} {ShipCity} {ShipRegion}".ToLower();
+        public string BuildSearchTerms() => $"{OrderID} {CustomerID} {ShipCity} {ShipRegion}".ToLower();
     }
 }

@@ -24,7 +24,9 @@ using EMS.Services.Infrastructure;
 using EMS.ViewModels.Infrastructure.Services;
 using EMS.ViewModels.Services;
 using EMS.ViewModels.ViewModels.AppLogs;
+using EMS.ViewModels.ViewModels.Charts;
 using EMS.ViewModels.ViewModels.Company;
+using EMS.ViewModels.ViewModels.Customers;
 using EMS.ViewModels.ViewModels.Dashboard;
 using EMS.ViewModels.ViewModels.Employees;
 using EMS.ViewModels.ViewModels.Login;
@@ -35,6 +37,7 @@ using EMS.ViewModels.ViewModels.Projects;
 using EMS.ViewModels.ViewModels.Settings;
 using EMS.ViewModels.ViewModels.Shell;
 using EMS.Views.AppLogs;
+using EMS.Views.Charts;
 using EMS.Views.Company;
 using EMS.Views.Dashboard;
 using EMS.Views.Employee;
@@ -54,6 +57,8 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.DependencyInjection;
 using EMS.Views.Companys;
+using EMS.Views.Customer;
+using EMS.Views.Customers;
 
 namespace EMS.Configuration
 {
@@ -63,7 +68,7 @@ namespace EMS.Configuration
 
         static public async Task ConfigureAsync()
         {
-            //AppCenter.Start("7b48b5c7-768f-49e3-a2e4-7293abe8b0ca", typeof(Analytics), typeof(Crashes));
+            //AppCenter.Start("ea6dc44d-6841-494c-aa48-a8cd6f3afad3", typeof(Analytics), typeof(Crashes));
             //Analytics.TrackEvent("AppStarted");
 
             ServiceLocator.Configure(_serviceCollection);
@@ -92,6 +97,9 @@ namespace EMS.Configuration
             NavigationService.Register<EmployeesViewModel, EmployeesView>();
             NavigationService.Register<EmployeeDetailsViewModel, EmployeeView>();
 
+            NavigationService.Register<CustomersViewModel, CustomersView>();
+            NavigationService.Register<CustomerDetailsViewModel, CustomerView>();
+
             NavigationService.Register<OrdersViewModel, OrdersView>();
             NavigationService.Register<OrderDetailsViewModel, OrderView>();
 
@@ -109,6 +117,8 @@ namespace EMS.Configuration
             NavigationService.Register<AppLogsViewModel, AppLogsView>();
 
             NavigationService.Register<SettingsViewModel, SettingsView>();
+            
+            NavigationService.Register<ChartsViewModel, ChartsMainView>();
         }
 
         static private async Task EnsureLogDbAsync()

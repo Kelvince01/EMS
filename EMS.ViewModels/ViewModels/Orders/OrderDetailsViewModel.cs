@@ -28,9 +28,9 @@ namespace EMS.ViewModels.ViewModels.Orders
     #region OrderDetailsArgs
     public class OrderDetailsArgs
     {
-        static public OrderDetailsArgs CreateDefault() => new OrderDetailsArgs { EmployeeID = 0 };
+        static public OrderDetailsArgs CreateDefault() => new OrderDetailsArgs { CustomerID = 0 };
 
-        public long EmployeeID { get; set; }
+        public long CustomerID { get; set; }
         public long OrderID { get; set; }
 
         public bool IsNew => OrderID <= 0;
@@ -47,23 +47,23 @@ namespace EMS.ViewModels.ViewModels.Orders
         public IOrderService OrderService { get; }
 
         override public string Title => (Item?.IsNew ?? true) ? TitleNew : TitleEdit;
-        public string TitleNew => Item?.Employee == null ? "New Order" : $"New Order, {Item?.Employee?.FullName}";
+        public string TitleNew => Item?.Customer == null ? "New Order" : $"New Order, {Item?.Customer?.FullName}";
         public string TitleEdit => Item == null ? "Order" : $"Order #{Item?.OrderID}";
 
         public override bool ItemIsNew => Item?.IsNew ?? true;
 
-        public bool CanEditEmployee => Item?.EmployeeID <= 0;
+        public bool CanEditCustomer => Item?.CustomerID <= 0;
 
-        public ICommand EmployeeSelectedCommand => new RelayCommand<EmployeeModel>(EmployeeSelected);
-        private void EmployeeSelected(EmployeeModel employee)
+        public ICommand CustomerSelectedCommand => new RelayCommand<CustomerModel>(CustomerSelected);
+        private void CustomerSelected(CustomerModel customer)
         {
-            EditableItem.EmployeeID = employee.EmployeeID;
-            EditableItem.ShipAddress = employee.AddressLine1;
-            EditableItem.ShipCity = employee.City;
-            EditableItem.ShipRegion = employee.Region;
-            EditableItem.ShipCountryCode = employee.CountryCode;
-            EditableItem.ShipPostalCode = employee.PostalCode;
-            EditableItem.Employee = employee;
+            EditableItem.CustomerID = customer.CustomerID;
+            EditableItem.ShipAddress = customer.AddressLine1;
+            EditableItem.ShipCity = customer.City;
+            EditableItem.ShipRegion = customer.Region;
+            EditableItem.ShipCountryCode = customer.CountryCode;
+            EditableItem.ShipPostalCode = customer.PostalCode;
+            EditableItem.Customer = customer;
 
             EditableItem.NotifyChanges();
         }
@@ -76,7 +76,7 @@ namespace EMS.ViewModels.ViewModels.Orders
 
             if (ViewModelArgs.IsNew)
             {
-                Item = await OrderService.CreateNewOrderAsync(ViewModelArgs.EmployeeID);
+                Item = await OrderService.CreateNewOrderAsync(ViewModelArgs.CustomerID);
                 IsEditMode = true;
             }
             else
@@ -96,7 +96,7 @@ namespace EMS.ViewModels.ViewModels.Orders
 
         public void Unload()
         {
-            ViewModelArgs.EmployeeID = Item?.EmployeeID ?? 0;
+            ViewModelArgs.CustomerID = Item?.CustomerID ?? 0;
             ViewModelArgs.OrderID = Item?.OrderID ?? 0;
         }
 
@@ -114,7 +114,7 @@ namespace EMS.ViewModels.ViewModels.Orders
         {
             return new OrderDetailsArgs
             {
-                EmployeeID = Item?.EmployeeID ?? 0,
+                CustomerID = Item?.CustomerID ?? 0,
                 OrderID = Item?.OrderID ?? 0
             };
         }
@@ -128,7 +128,7 @@ namespace EMS.ViewModels.ViewModels.Orders
                 await OrderService.UpdateOrderAsync(model);
                 EndStatusMessage("Order saved");
                 LogInformation("Order", "Save", "Order saved successfully", $"Order #{model.OrderID} was saved successfully.");
-                NotifyPropertyChanged(nameof(CanEditEmployee));
+                NotifyPropertyChanged(nameof(CanEditCustomer));
                 return true;
             }
             catch (Exception ex)
@@ -165,7 +165,7 @@ namespace EMS.ViewModels.ViewModels.Orders
 
         override protected IEnumerable<IValidationConstraint<OrderModel>> GetValidationConstraints(OrderModel model)
         {
-            yield return new RequiredGreaterThanZeroConstraint<OrderModel>("Employee", m => m.EmployeeID);
+            yield return new RequiredGreaterThanZeroConstraint<OrderModel>("Customer", m => m.CustomerID);
             if (model.Status > 0)
             {
                 yield return new RequiredConstraint<OrderModel>("Payment Type", m => m.PaymentType);

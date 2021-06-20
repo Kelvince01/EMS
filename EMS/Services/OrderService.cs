@@ -84,28 +84,28 @@ namespace EMS.Services
             }
         }
 
-        public async Task<OrderModel> CreateNewOrderAsync(long employeeID)
+        public async Task<OrderModel> CreateNewOrderAsync(long customerID)
         {
             var model = new OrderModel
             {
-                EmployeeID = employeeID,
+                CustomerID = customerID,
                 OrderDate = DateTime.UtcNow,
                 Status = 0
             };
-            if (employeeID > 0)
+            if (customerID > 0)
             {
                 using (var dataService = DataServiceFactory.CreateDataService())
                 {
-                    var parent = await dataService.GetEmployeeAsync(employeeID);
+                    var parent = await dataService.GetCustomerAsync(customerID);
                     if (parent != null)
                     {
-                        model.EmployeeID = employeeID;
+                        model.CustomerID = customerID;
                         model.ShipAddress = parent.AddressLine1;
                         model.ShipCity = parent.City;
                         model.ShipRegion = parent.Region;
                         model.ShipCountryCode = parent.CountryCode;
                         model.ShipPostalCode = parent.PostalCode;
-                        model.Employee = await EmployeeService.CreateEmployeeModelAsync(parent, includeAllFields: true);
+                        model.Customer = await CustomerService.CreateCustomerModelAsync(parent, includeAllFields: true);
                     }
                 }
             }
@@ -151,7 +151,7 @@ namespace EMS.Services
             var model = new OrderModel()
             {
                 OrderID = source.OrderID,
-                EmployeeID = source.EmployeeID,
+                CustomerID = source.CustomerID,
                 OrderDate = source.OrderDate,
                 ShippedDate = source.ShippedDate,
                 DeliveredDate = source.DeliveredDate,
@@ -166,16 +166,16 @@ namespace EMS.Services
                 ShipPostalCode = source.ShipPostalCode,
                 ShipPhone = source.ShipPhone,
             };
-            if (source.Employee != null)
+            if (source.Customer != null)
             {
-                model.Employee = await EmployeeService.CreateEmployeeModelAsync(source.Employee, includeAllFields);
+                model.Customer = await CustomerService.CreateCustomerModelAsync(source.Customer, includeAllFields);
             }
             return model;
         }
 
         private void UpdateOrderFromModel(Order target, OrderModel source)
         {
-            target.EmployeeID = source.EmployeeID;
+            target.CustomerID = source.CustomerID;
             target.OrderDate = source.OrderDate;
             target.ShippedDate = source.ShippedDate;
             target.DeliveredDate = source.DeliveredDate;

@@ -18,7 +18,7 @@ namespace EMS.Data.Common
 {
     static class UIDGenerator
     {
-        static private readonly DateTime DateSeed = DateTime.Parse("2015/01/01");
+        static private readonly DateTime DateSeed = DateTime.Parse("2021/01/01");
 
         static public long Next(int prefix = 1)
         {

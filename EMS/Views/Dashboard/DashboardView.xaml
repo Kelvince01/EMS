@@ -50,6 +50,11 @@
                                          Height="250"
                                          ItemsSource="{x:Bind ViewModel.Employees, Mode=OneWay}" 
                                          Tag="Employees" />
+                <parts:CustomersPane Margin="12" 
+                                     Width="600"
+                                     Height="250"
+                                     ItemsSource="{x:Bind ViewModel.Customers, Mode=OneWay}" 
+                                     Tag="Customers" />
 
                 <parts:ProjectsPane Margin="12" 
                                     Width="400"

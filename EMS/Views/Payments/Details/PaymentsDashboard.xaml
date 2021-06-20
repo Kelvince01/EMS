@@ -1,0 +1,28 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EMS.Views.Payments.Details"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="EMS.Views.Payments.Details.PaymentsDashboard"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid FocusVisualPrimaryBrush="Black">
+        <Pivot Title="Payment" Foreground="Black">
+            <PivotItem Header="Dashboard" Foreground="White">
+                <StackPanel>
+                    
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Header="Employees Payment">
+                <local:EmployeesPayment></local:EmployeesPayment>
+            </PivotItem>
+            <PivotItem Header="Customers Payment">
+                <local:CustomersPayment></local:CustomersPayment>
+            </PivotItem>
+        </Pivot>
+
+    </Grid>
+</UserControl>

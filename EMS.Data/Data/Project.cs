@@ -16,10 +16,25 @@ namespace EMS.Data.Data
         public int CategoryID { get; set; }
 
         [Required]
+        public long CustomerID { get; set; }
+
+        [Required]
+        public long EmployeeID { get; set; }
+
+        public virtual Customer Customer { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+
+        [Required]
         [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(1000)]
         public string Description { get; set; }
+
+        public DateTimeOffset? StartDate { get; set; }
+        public DateTimeOffset? EndDate { get; set; }
+
+        public double Progress { get; set; }
+        public string Status { get; set; }
 
         [MaxLength(4)]
         public string Size { get; set; }
@@ -51,6 +66,6 @@ namespace EMS.Data.Data
         public byte[] Picture { get; set; }
         public byte[] Thumbnail { get; set; }
 
-        public string BuildSearchTerms() => $"{ProjectID} {Name} {Color}".ToLower();
+        public string BuildSearchTerms() => $"{ProjectID} {Name} {CustomerID}".ToLower();
     }
 }

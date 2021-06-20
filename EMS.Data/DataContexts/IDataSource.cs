@@ -32,6 +32,7 @@ namespace EMS.Data.DataContexts
         DbSet<Shipper> Shippers { get; }
         DbSet<TaxType> TaxTypes { get; }
 
+        DbSet<Customer> Customers { get; }
         DbSet<Employee> Employees { get; }
         DbSet<Order> Orders { get; }
         DbSet<OrderItem> OrderItems { get; }

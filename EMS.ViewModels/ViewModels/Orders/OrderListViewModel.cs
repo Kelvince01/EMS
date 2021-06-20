@@ -41,7 +41,7 @@ namespace EMS.ViewModels.ViewModels.Orders
 
         public bool IsEmpty { get; set; }
 
-        public long EmployeeID { get; set; }
+        public long CustomerID { get; set; }
 
         public string Query { get; set; }
 
@@ -101,7 +101,7 @@ namespace EMS.ViewModels.ViewModels.Orders
                 Query = Query,
                 OrderBy = ViewModelArgs.OrderBy,
                 OrderByDesc = ViewModelArgs.OrderByDesc,
-                EmployeeID = ViewModelArgs.EmployeeID
+                CustomerID = ViewModelArgs.CustomerID
             };
         }
 
@@ -158,11 +158,11 @@ namespace EMS.ViewModels.ViewModels.Orders
         {
             if (IsMainView)
             {
-                await NavigationService.CreateNewViewAsync<OrderDetailsViewModel>(new OrderDetailsArgs { EmployeeID = ViewModelArgs.EmployeeID });
+                await NavigationService.CreateNewViewAsync<OrderDetailsViewModel>(new OrderDetailsArgs { CustomerID = ViewModelArgs.CustomerID });
             }
             else
             {
-                NavigationService.Navigate<OrderDetailsViewModel>(new OrderDetailsArgs { EmployeeID = ViewModelArgs.EmployeeID });
+                NavigationService.Navigate<OrderDetailsViewModel>(new OrderDetailsArgs { CustomerID = ViewModelArgs.CustomerID });
             }
 
             StatusReady();
@@ -241,9 +241,9 @@ namespace EMS.ViewModels.ViewModels.Orders
                 OrderBy = ViewModelArgs.OrderBy,
                 OrderByDesc = ViewModelArgs.OrderByDesc
             };
-            if (ViewModelArgs.EmployeeID > 0)
+            if (ViewModelArgs.CustomerID > 0)
             {
-                request.Where = (r) => r.EmployeeID == ViewModelArgs.EmployeeID;
+                request.Where = (r) => r.CustomerID == ViewModelArgs.CustomerID;
             }
             return request;
         }

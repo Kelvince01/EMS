@@ -20,10 +20,10 @@ namespace EMS.ViewModels.Models
 {
     public class OrderModel : ObservableObject
     {
-        static public OrderModel CreateEmpty() => new OrderModel { OrderID = -1, EmployeeID = -1, IsEmpty = true };
+        static public OrderModel CreateEmpty() => new OrderModel { OrderID = -1, CustomerID = -1, IsEmpty = true };
 
         public long OrderID { get; set; }
-        public long EmployeeID { get; set; }
+        public long CustomerID { get; set; }
 
         private DateTimeOffset _orderDate;
         public DateTimeOffset OrderDate
@@ -64,7 +64,7 @@ namespace EMS.ViewModels.Models
         public string ShipPostalCode { get; set; }
         public string ShipPhone { get; set; }
 
-        public EmployeeModel Employee { get; set; }
+        public CustomerModel Customer { get; set; }
 
         public bool IsNew => OrderID <= 0;
 
@@ -115,7 +115,7 @@ namespace EMS.ViewModels.Models
             if (source != null)
             {
                 OrderID = source.OrderID;
-                EmployeeID = source.EmployeeID;
+                CustomerID = source.CustomerID;
                 OrderDate = source.OrderDate;
                 ShippedDate = source.ShippedDate;
                 DeliveredDate = source.DeliveredDate;
@@ -129,7 +129,7 @@ namespace EMS.ViewModels.Models
                 ShipCountryCode = source.ShipCountryCode;
                 ShipPostalCode = source.ShipPostalCode;
                 ShipPhone = source.ShipPhone;
-                Employee = source.Employee;
+                Customer = source.Customer;
             }
         }
 

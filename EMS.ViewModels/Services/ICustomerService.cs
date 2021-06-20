@@ -13,30 +13,24 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using EMS.Data.Common;
+using EMS.Data.Data;
+using EMS.ViewModels.Models;
 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-using EMS.ViewModels;
-using EMS.ViewModels.ViewModels.Orders;
-
-namespace EMS.Views.Employees.Details
+namespace EMS.ViewModels.Services
 {
-    public sealed partial class EmployeesOrders : UserControl
+    public interface ICustomerService
     {
-        public EmployeesOrders()
-        {
-            InitializeComponent();
-        }
+        Task<CustomerModel> GetCustomerAsync(long id);
+        Task<IList<CustomerModel>> GetCustomersAsync(DataRequest<Customer> request);
+        Task<IList<CustomerModel>> GetCustomersAsync(int skip, int take, DataRequest<Customer> request);
+        Task<int> GetCustomersCountAsync(DataRequest<Customer> request);
 
-        #region ViewModel
-        public OrderListViewModel ViewModel
-        {
-            get { return (OrderListViewModel)GetValue(ViewModelProperty); }
-            set { SetValue(ViewModelProperty, value); }
-        }
+        Task<int> UpdateCustomerAsync(CustomerModel model);
 
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register("ViewModel", typeof(OrderListViewModel), typeof(EmployeesOrders), new PropertyMetadata(null));
-        #endregion
+        Task<int> DeleteCustomerAsync(CustomerModel model);
+        Task<int> DeleteCustomerRangeAsync(int index, int length, DataRequest<Customer> request);
     }
 }

@@ -41,6 +41,10 @@ namespace EMS.ViewModels.ViewModels.Projects
 
         public bool IsEmpty { get; set; }
 
+        public long CustomerID { get; set; }
+
+        public long EmployeeID { get; set; }
+
         public string Query { get; set; }
 
         public Expression<Func<Project, object>> OrderBy { get; set; }
@@ -65,7 +69,7 @@ namespace EMS.ViewModels.ViewModels.Projects
             await NavigationService.CreateNewViewAsync<ProjectDetailsViewModel>(new ProjectDetailsArgs { ProjectID = model.ProjectID });
         }
 
-        public async Task LoadAsync(ProjectListArgs args)
+        public async Task LoadAsync(ProjectListArgs args, bool silent = false)
         {
             ViewModelArgs = args ?? ProjectListArgs.CreateEmpty();
             Query = ViewModelArgs.Query;
@@ -139,6 +143,15 @@ namespace EMS.ViewModels.ViewModels.Projects
                 return await ProjectService.GetProjectsAsync(request);
             }
             return new List<ProjectModel>();
+        }
+
+        public ICommand OpenInNewViewCommand => new RelayCommand(OnOpenInNewView);
+        private async void OnOpenInNewView()
+        {
+            if (SelectedItem != null)
+            {
+                await NavigationService.CreateNewViewAsync<ProjectDetailsViewModel>(new ProjectDetailsArgs { ProjectID = SelectedItem.ProjectID });
+            }
         }
 
         protected override async void OnNew()

@@ -129,6 +129,7 @@
     <Compile Include="DataContexts\SQLServerDb.cs" />
     <Compile Include="DataServices\Base\DataServiceBase.Company.cs" />
     <Compile Include="DataServices\Base\DataServiceBase.cs" />
+    <Compile Include="DataServices\Base\DataServiceBase.Customers.cs" />
     <Compile Include="DataServices\Base\DataServiceBase.Employees.cs" />
     <Compile Include="DataServices\Base\DataServiceBase.OrderItems.cs" />
     <Compile Include="DataServices\Base\DataServiceBase.Orders.cs" />
@@ -140,14 +141,17 @@
     <Compile Include="Data\Category.cs" />
     <Compile Include="Data\Company.cs" />
     <Compile Include="Data\CountryCode.cs" />
+    <Compile Include="Data\Customer.cs" />
     <Compile Include="Data\DbVersion.cs" />
     <Compile Include="Data\Employee.cs" />
     <Compile Include="Data\Mail.cs" />
     <Compile Include="Data\Order.cs" />
     <Compile Include="Data\OrderStatus.cs" />
+    <Compile Include="Data\Payment.cs" />
     <Compile Include="Data\PaymentType.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\OrderItem.cs" />
+    <Compile Include="Data\ProjectStatus.cs" />
     <Compile Include="Data\Shipper.cs" />
     <Compile Include="Data\TaxType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

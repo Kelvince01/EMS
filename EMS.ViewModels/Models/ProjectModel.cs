@@ -13,6 +13,8 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using EMS.Data.Data;
 using EMS.ViewModels.Infrastructure.ViewModels;
 using EMS.ViewModels.Services;
 
@@ -26,8 +28,26 @@ namespace EMS.ViewModels.Models
 
         public int CategoryID { get; set; }
 
+        public long CustomerID { get; set; }
+
+        public long EmployeeID { get; set; }
+
+        public virtual Customer Customer { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public DateTimeOffset? StartDate { get; set; }
+        public DateTimeOffset? EndDate { get; set; }
+
+        public double Progress { get; set; }
+        private int _status;
+        public int Status
+        {
+            get => _status;
+            set { if (Set(ref _status, value)) UpdateStatusDependencies(); }
+        }
 
         public string Size { get; set; }
         public string Color { get; set; }
@@ -53,6 +73,30 @@ namespace EMS.ViewModels.Models
 
         public bool IsNew => ProjectID <= 0;
         public string CategoryName => LookupTablesProxy.Instance.GetCategory(CategoryID);
+
+        public string StatusDesc => LookupTablesProxy.Instance.GetOrderStatus(Status);
+
+        private void UpdateStatusDependencies()
+        {
+            switch (Status)
+            {
+                case 0:
+                case 1:
+                    StartDate = null;
+                    EndDate = null;
+                    break;
+                case 2:
+                    StartDate = StartDate ?? CreatedOn;
+                    EndDate = null;
+                    break;
+                case 3:
+                    StartDate = StartDate ?? CreatedOn;
+                    EndDate = EndDate ?? StartDate ?? CreatedOn;
+                    break;
+            }
+
+            NotifyPropertyChanged(nameof(StatusDesc));
+        }
 
         public override void Merge(ObservableObject source)
         {

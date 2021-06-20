@@ -36,6 +36,13 @@ namespace EMS.Data.DataServices
         Task<int> UpdateCompanyAsync(Company company);
         Task<int> DeleteCompanysAsync(params Company[] companys);
 
+        Task<Customer> GetCustomerAsync(long id);
+        Task<IList<Customer>> GetCustomersAsync(int skip, int take, DataRequest<Customer> request);
+        Task<IList<Customer>> GetCustomerKeysAsync(int skip, int take, DataRequest<Customer> request);
+        Task<int> GetCustomersCountAsync(DataRequest<Customer> request);
+        Task<int> UpdateCustomerAsync(Customer customer);
+        Task<int> DeleteCustomersAsync(params Customer[] customers);
+
         Task<Order> GetOrderAsync(long id);
         Task<IList<Order>> GetOrdersAsync(int skip, int take, DataRequest<Order> request);
         Task<IList<Order>> GetOrderKeysAsync(int skip, int take, DataRequest<Order> request);
@@ -61,6 +68,7 @@ namespace EMS.Data.DataServices
         Task<IList<Category>> GetCategoriesAsync();
         Task<IList<CountryCode>> GetCountryCodesAsync();
         Task<IList<OrderStatus>> GetOrderStatusAsync();
+        Task<IList<ProjectStatus>> GetProjectStatusAsync();
         Task<IList<PaymentType>> GetPaymentTypesAsync();
         Task<IList<Shipper>> GetShippersAsync();
         Task<IList<TaxType>> GetTaxTypesAsync();

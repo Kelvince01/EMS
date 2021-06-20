@@ -23,7 +23,9 @@ using EMS.Services.Infrastructure.LogService;
 using EMS.ViewModels.Infrastructure.Services;
 using EMS.ViewModels.Services;
 using EMS.ViewModels.ViewModels.AppLogs;
+using EMS.ViewModels.ViewModels.Charts;
 using EMS.ViewModels.ViewModels.Company;
+using EMS.ViewModels.ViewModels.Customers;
 using EMS.ViewModels.ViewModels.Dashboard;
 using EMS.ViewModels.ViewModels.Employees;
 using EMS.ViewModels.ViewModels.Login;
@@ -49,6 +51,7 @@ namespace EMS.Configuration
             serviceCollection.AddSingleton<IDataServiceFactory, DataServiceFactory>();
             serviceCollection.AddSingleton<ILookupTables, LookupTables>();
             serviceCollection.AddSingleton<IEmployeeService, EmployeeService>();
+            serviceCollection.AddSingleton<ICustomerService, CustomerService>();
             serviceCollection.AddSingleton<IOrderService, OrderService>();
             serviceCollection.AddSingleton<IOrderItemService, OrderItemService>();
             serviceCollection.AddSingleton<IProjectService, ProjectService>();
@@ -74,6 +77,9 @@ namespace EMS.Configuration
             serviceCollection.AddTransient<EmployeesViewModel>();
             serviceCollection.AddTransient<EmployeeDetailsViewModel>();
 
+            serviceCollection.AddTransient<CustomersViewModel>();
+            serviceCollection.AddTransient<CustomerDetailsViewModel>();
+
             serviceCollection.AddTransient<OrdersViewModel>();
             serviceCollection.AddTransient<OrderDetailsViewModel>();
             serviceCollection.AddTransient<OrderDetailsWithItemsViewModel>();
@@ -92,6 +98,8 @@ namespace EMS.Configuration
             serviceCollection.AddTransient<SettingsViewModel>();
             serviceCollection.AddTransient<ValidateConnectionViewModel>();
             serviceCollection.AddTransient<CreateDatabaseViewModel>();
+            
+            serviceCollection.AddTransient<ChartsViewModel>();
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }

@@ -26,13 +26,15 @@ namespace EMS.ViewModels.Services
         IList<CategoryModel> Categories { get; }
         IList<CountryCodeModel> CountryCodes { get; }
         IList<OrderStatusModel> OrderStatus { get; }
+        IList<ProjectStatusModel> ProjectStatus { get; }
         IList<PaymentTypeModel> PaymentTypes { get; }
         IList<ShipperModel> Shippers { get; }
         IList<TaxTypeModel> TaxTypes { get; }
-
+        
         string GetCategory(int id);
         string GetCountry(string id);
         string GetOrderStatus(int id);
+        string GetProjectStatus(int id);
         string GetPaymentType(int? id);
         string GetShipper(int? id);
         string GetTaxDesc(int id);

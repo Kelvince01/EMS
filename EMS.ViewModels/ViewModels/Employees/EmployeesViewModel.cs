@@ -19,25 +19,26 @@ using EMS.ViewModels.Infrastructure.ViewModels;
 using EMS.ViewModels.Models;
 using EMS.ViewModels.Services;
 using EMS.ViewModels.ViewModels.Orders;
+using EMS.ViewModels.ViewModels.Projects;
 
 namespace EMS.ViewModels.ViewModels.Employees
 {
     public class EmployeesViewModel : ViewModelBase
     {
-        public EmployeesViewModel(IEmployeeService employeeService, IOrderService orderService, IFilePickerService filePickerService, ICommonServices commonServices) : base(commonServices)
+        public EmployeesViewModel(IEmployeeService employeeService, IProjectService projectService, IFilePickerService filePickerService, ICommonServices commonServices) : base(commonServices)
         {
             EmployeeService = employeeService;
 
             EmployeeList = new EmployeeListViewModel(EmployeeService, commonServices);
             EmployeeDetails = new EmployeeDetailsViewModel(EmployeeService, filePickerService, commonServices);
-            EmployeeOrders = new OrderListViewModel(orderService, commonServices);
+            EmployeeProjects = new ProjectListViewModel(projectService, commonServices);
         }
 
         public IEmployeeService EmployeeService { get; }
 
         public EmployeeListViewModel EmployeeList { get; set; }
         public EmployeeDetailsViewModel EmployeeDetails { get; set; }
-        public OrderListViewModel EmployeeOrders { get; set; }
+        public ProjectListViewModel EmployeeProjects { get; set; }
 
         public async Task LoadAsync(EmployeeListArgs args)
         {
@@ -54,14 +55,14 @@ namespace EMS.ViewModels.ViewModels.Employees
             MessageService.Subscribe<EmployeeListViewModel>(this, OnMessage);
             EmployeeList.Subscribe();
             EmployeeDetails.Subscribe();
-            EmployeeOrders.Subscribe();
+            EmployeeProjects.Subscribe();
         }
         public void Unsubscribe()
         {
             MessageService.Unsubscribe(this);
             EmployeeList.Unsubscribe();
             EmployeeDetails.Unsubscribe();
-            EmployeeOrders.Unsubscribe();
+            EmployeeProjects.Unsubscribe();
         }
 
         private async void OnMessage(EmployeeListViewModel viewModel, string message, object args)
@@ -82,14 +83,14 @@ namespace EMS.ViewModels.ViewModels.Employees
                 StatusReady();
                 EmployeeDetails.CancelEdit();
             }
-            EmployeeOrders.IsMultipleSelection = false;
+            EmployeeProjects.IsMultipleSelection = false;
             var selected = EmployeeList.SelectedItem;
             if (!EmployeeList.IsMultipleSelection)
             {
                 if (selected != null && !selected.IsEmpty)
                 {
                     await PopulateDetails(selected);
-                    await PopulateOrders(selected);
+                    await PopulateProjects(selected);
                 }
             }
             EmployeeDetails.Item = selected;
@@ -108,18 +109,18 @@ namespace EMS.ViewModels.ViewModels.Employees
             }
         }
 
-        private async Task PopulateOrders(EmployeeModel selectedItem)
+        private async Task PopulateProjects(EmployeeModel selectedItem)
         {
             try
             {
                 if (selectedItem != null)
                 {
-                    await EmployeeOrders.LoadAsync(new OrderListArgs { EmployeeID = selectedItem.EmployeeID }, silent: true);
+                    await EmployeeProjects.LoadAsync(new ProjectListArgs { EmployeeID = selectedItem.EmployeeID }, true);
                 }
             }
             catch (Exception ex)
             {
-                LogException("Employees", "Load Orders", ex);
+                LogException("Employees", "Load Projects", ex);
             }
         }
     }

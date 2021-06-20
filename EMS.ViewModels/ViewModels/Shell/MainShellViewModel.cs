@@ -20,7 +20,9 @@ using EMS.Data.Common;
 using EMS.Data.Data;
 using EMS.ViewModels.Infrastructure.Services;
 using EMS.ViewModels.ViewModels.AppLogs;
+using EMS.ViewModels.ViewModels.Charts;
 using EMS.ViewModels.ViewModels.Company;
+using EMS.ViewModels.ViewModels.Customers;
 using EMS.ViewModels.ViewModels.Dashboard;
 using EMS.ViewModels.ViewModels.Employees;
 using EMS.ViewModels.ViewModels.Mails;
@@ -34,12 +36,14 @@ namespace EMS.ViewModels.ViewModels.Shell
     {
         private readonly NavigationItem DashboardItem = new NavigationItem(0xE80F, "Dashboard", typeof(DashboardViewModel));
         private readonly NavigationItem EmployeesItem = new NavigationItem(0xE716, "Employees", typeof(EmployeesViewModel));
+        private readonly NavigationItem CustomersItem = new NavigationItem(0xE716, "Customers", typeof(CustomersViewModel));
         private readonly NavigationItem OrdersItem = new NavigationItem(0xE8A1, "Orders", typeof(OrdersViewModel));
         private readonly NavigationItem ProjectsItem = new NavigationItem(0xE781, "Projects", typeof(ProjectsViewModel));
         private readonly NavigationItem AppLogsItem = new NavigationItem(0xE7BA, "Activity Log", typeof(AppLogsViewModel));
         private readonly NavigationItem SettingsItem = new NavigationItem(0x0000, "Settings", typeof(SettingsViewModel));
         private readonly NavigationItem MailsItem = new NavigationItem(0x0000, "Mails", typeof(MailsViewModel));
         private readonly NavigationItem CompanyItem = new NavigationItem(0x0000, "Company", typeof(CompanyViewModel));
+        private readonly NavigationItem ChartsItem = new NavigationItem(0x0000, "Charts", typeof(ChartsViewModel));
 
         public MainShellViewModel(ILoginService loginService, ICommonServices commonServices) : base(loginService, commonServices)
         {
@@ -99,6 +103,9 @@ namespace EMS.ViewModels.ViewModels.Shell
                 case "EmployeesViewModel":
                     NavigationService.Navigate(viewModel, new EmployeeListArgs());
                     break;
+                case "CustomersViewModel":
+                    NavigationService.Navigate(viewModel, new CustomerListArgs());
+                    break;
                 case "OrdersViewModel":
                     NavigationService.Navigate(viewModel, new OrderListArgs());
                     break;
@@ -119,6 +126,9 @@ namespace EMS.ViewModels.ViewModels.Shell
                 case "SettingsViewModel":
                     NavigationService.Navigate(viewModel, new SettingsArgs());
                     break;
+                case "ChartsViewModel":
+                    NavigationService.Navigate(viewModel, new ChartsArgs());
+                    break;
                 default:
                     throw new NotImplementedException();
             }
@@ -128,11 +138,13 @@ namespace EMS.ViewModels.ViewModels.Shell
         {
             yield return DashboardItem;
             yield return EmployeesItem;
+            yield return CustomersItem;
             yield return OrdersItem;
             yield return ProjectsItem;
             yield return AppLogsItem;
             yield return MailsItem;
             yield return CompanyItem;
+            yield return ChartsItem;
         }
 
         private async void OnLogServiceMessage(ILogService logService, string message, AppLog log)

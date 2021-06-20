@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="EMS.Views.Charts.DlhSoftChartGanttView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EMS.Views.Charts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:DlhSoft.ProjectData.GanttChart.WinRT.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Items collection is initialized in code behind. -->
+        <controls:GanttChartView x:Name="GanttChartView"
+                              CompletedBarHeight="10.5" CompletedBarMargin="0"
+                              StandardBarFill="White" StandardBarStroke="#005c9e" 
+                              StandardCompletedBarFill="#005c9e" StandardCompletedBarStroke="#005c9e"
+                              MilestoneBarFill="#e31d3b" MilestoneBarStroke="#005c9e"
+                              SummaryBarFill="#606060" SummaryBarStroke="#505050"
+                              DependencyLineStroke="#005c9e"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Padding="4">
+            <Button Content="Level resources" Click="LevelResourcesButton_Click" Margin="4"/>
+            <Button Content="Optimize work" Click="OptimizeWorkButton_Click" Margin="4"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

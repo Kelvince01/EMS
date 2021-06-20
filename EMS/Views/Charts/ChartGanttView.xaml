@@ -1,0 +1,33 @@
+﻿<UserControl
+    x:Class="EMS.Views.Charts.ChartGanttView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EMS.Views.Charts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uwp="using:LiveCharts.Uwp"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Click="ResetZoomOnClick">Reset zoom</Button>
+            <TextBlock Margin="10" TextWrapping="Wrap">Use your mouse wheel to zoom in/out, click hold and drag for panning</TextBlock>
+        </StackPanel>
+        <uwp:CartesianChart Grid.Row="1" Series="{Binding Series}" Zoom="X">
+            <uwp:CartesianChart.AxisX>
+                <uwp:Axis LabelFormatter="{Binding Formatter}" 
+                          MinValue="{Binding From, Mode=TwoWay}" 
+                          MaxValue="{Binding To, Mode=TwoWay}"></uwp:Axis>
+            </uwp:CartesianChart.AxisX>
+            <uwp:CartesianChart.AxisY>
+                <uwp:Axis Labels="{Binding Labels}"></uwp:Axis>
+            </uwp:CartesianChart.AxisY>
+        </uwp:CartesianChart>
+    </Grid>
+</UserControl>

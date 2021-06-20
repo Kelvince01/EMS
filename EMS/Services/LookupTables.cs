@@ -38,6 +38,7 @@ namespace EMS.Services
         public IList<CategoryModel> Categories { get; private set; }
         public IList<CountryCodeModel> CountryCodes { get; private set; }
         public IList<OrderStatusModel> OrderStatus { get; private set; }
+        public IList<ProjectStatusModel> ProjectStatus { get; private set; }
         public IList<PaymentTypeModel> PaymentTypes { get; private set; }
         public IList<ShipperModel> Shippers { get; private set; }
         public IList<TaxTypeModel> TaxTypes { get; private set; }
@@ -47,6 +48,7 @@ namespace EMS.Services
             Categories = await GetCategoriesAsync();
             CountryCodes = await GetCountryCodesAsync();
             OrderStatus = await GetOrderStatusAsync();
+            ProjectStatus = await GetProjectStatusAsync();
             PaymentTypes = await GetPaymentTypesAsync();
             Shippers = await GetShippersAsync();
             TaxTypes = await GetTaxTypesAsync();
@@ -65,6 +67,11 @@ namespace EMS.Services
         public string GetOrderStatus(int id)
         {
             return OrderStatus.Where(r => r.Status == id).Select(r => r.Name).FirstOrDefault();
+        }
+
+        public string GetProjectStatus(int id)
+        {
+            return ProjectStatus.Where(r => r.Status == id).Select(r => r.Name).FirstOrDefault();
         }
 
         public string GetPaymentType(int? id)
@@ -150,6 +157,28 @@ namespace EMS.Services
                 LogException("LookupTables", "Load OrderStatus", ex);
             }
             return new List<OrderStatusModel>();
+        }
+
+        private async Task<IList<ProjectStatusModel>> GetProjectStatusAsync()
+        {
+            try
+            {
+                using (var dataService = DataServiceFactory.CreateDataService())
+                {
+                    var items = await dataService.GetProjectStatusAsync();
+                    return items.Select(r => new ProjectStatusModel
+                    {
+                            Status = r.Status,
+                            Name = r.Name
+                        })
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogException("LookupTables", "Load OrderStatus", ex);
+            }
+            return new List<ProjectStatusModel>();
         }
 
         private async Task<IList<PaymentTypeModel>> GetPaymentTypesAsync()

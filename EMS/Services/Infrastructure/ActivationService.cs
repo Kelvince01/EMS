@@ -18,6 +18,7 @@ using Windows.ApplicationModel.Activation;
 using EMS.Extensions;
 using EMS.ViewModels.Infrastructure.ViewModels;
 using EMS.ViewModels.ViewModels.Company;
+using EMS.ViewModels.ViewModels.Customers;
 using EMS.ViewModels.ViewModels.Dashboard;
 using EMS.ViewModels.ViewModels.Employees;
 using EMS.ViewModels.ViewModels.Orders;
@@ -73,6 +74,14 @@ namespace EMS.Services.Infrastructure
                             return ActivationInfo.Create<EmployeeDetailsViewModel>(new EmployeeDetailsArgs { EmployeeID = employeeID });
                         }
                         return ActivationInfo.Create<EmployeesViewModel>(new EmployeeListArgs());
+                    case "Customer":
+                    case "Customers":
+                        long customerID = args.Uri.GetInt64Parameter("id");
+                        if (customerID > 0)
+                        {
+                            return ActivationInfo.Create<CustomerDetailsViewModel>(new CustomerDetailsArgs { CustomerID = customerID });
+                        }
+                        return ActivationInfo.Create<CustomersViewModel>(new CustomerListArgs());
                     case "order":
                     case "orders":
                         long orderID = args.Uri.GetInt64Parameter("id");

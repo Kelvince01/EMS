@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="EMS.Views.Customer.CustomerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:windowTitle="using:EMS.Controls.WindowTitle" 
+    xmlns:section="using:EMS.Controls.Section" 
+    xmlns:details="using:EMS.Views.Customer.Details"
+    mc:Ignorable="d">
+
+    <Grid>
+        <windowTitle:WindowTitle Title="{x:Bind ViewModel.Title, Mode=OneWay}" />
+
+        <section:Section IsEnabled="{x:Bind ViewModel.IsEnabled, Mode=OneWay}"
+                          Style="{StaticResource DetailsViewSection}">
+            <details:CustomerDetails x:Name="details" ViewModel="{x:Bind ViewModel, Mode=OneWay}" />
+        </section:Section>
+    </Grid>
+</Page>

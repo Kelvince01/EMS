@@ -21,6 +21,7 @@ using EMS.ViewModels.Infrastructure.Services;
 using EMS.ViewModels.Infrastructure.ViewModels;
 using EMS.ViewModels.Models;
 using EMS.ViewModels.Services;
+using EMS.ViewModels.ViewModels.Customers;
 using EMS.ViewModels.ViewModels.Employees;
 using EMS.ViewModels.ViewModels.Orders;
 using EMS.ViewModels.ViewModels.Projects;
@@ -29,14 +30,16 @@ namespace EMS.ViewModels.ViewModels.Dashboard
 {
     public class DashboardViewModel : ViewModelBase
     {
-        public DashboardViewModel(IEmployeeService employeeService, IOrderService orderService, IProjectService projectService, ICommonServices commonServices) : base(commonServices)
+        public DashboardViewModel(IEmployeeService employeeService, ICustomerService customerService, IOrderService orderService, IProjectService projectService, ICommonServices commonServices) : base(commonServices)
         {
             EmployeeService = employeeService;
+            CustomerService = customerService;
             OrderService = orderService;
             ProjectService = projectService;
         }
 
         public IEmployeeService EmployeeService { get; }
+        public ICustomerService CustomerService { get; }
         public IOrderService OrderService { get; }
         public IProjectService ProjectService { get; }
 
@@ -45,6 +48,13 @@ namespace EMS.ViewModels.ViewModels.Dashboard
         {
             get => _employees;
             set => Set(ref _employees, value);
+        }
+
+        private IList<CustomerModel> _customers = null;
+        public IList<CustomerModel> Customers
+        {
+            get => _customers;
+            set => Set(ref _customers, value);
         }
 
         private IList<ProjectModel> _projects = null;
@@ -65,6 +75,7 @@ namespace EMS.ViewModels.ViewModels.Dashboard
         {
             StartStatusMessage("Loading dashboard...");
             await LoadEmployeesAsync();
+            await LoadCustomersAsync();
             await LoadOrdersAsync();
             await LoadProjectsAsync();
             EndStatusMessage("Dashboard loaded");
@@ -72,6 +83,7 @@ namespace EMS.ViewModels.ViewModels.Dashboard
         public void Unload()
         {
             Employees = null;
+            Customers = null;
             Projects = null;
             Orders = null;
         }
@@ -90,6 +102,23 @@ namespace EMS.ViewModels.ViewModels.Dashboard
             catch (Exception ex)
             {
                 LogException("Dashboard", "Load Employees", ex);
+            }
+        }
+
+        private async Task LoadCustomersAsync()
+        {
+            try
+            {
+                var request = new DataRequest<Customer>
+                {
+                    OrderByDesc = r => r.CustomerID
+                    //OrderByDesc = r => r.CreatedOn
+                };
+                Customers = await CustomerService.GetCustomersAsync(0, 5, request);
+            }
+            catch (Exception ex)
+            {
+                LogException("Dashboard", "Load Customers", ex);
             }
         }
 
@@ -134,11 +163,14 @@ namespace EMS.ViewModels.ViewModels.Dashboard
                 case "Employees":
                     NavigationService.Navigate<EmployeesViewModel>(new EmployeeListArgs { OrderByDesc = r => r.EmployeeID });
                     break;
+                case "Customers":
+                    NavigationService.Navigate<CustomersViewModel>(new CustomerListArgs { OrderByDesc = r => r.CustomerID });
+                    break;
                 case "Orders":
                     NavigationService.Navigate<OrdersViewModel>(new OrderListArgs { OrderByDesc = r => r.OrderID });
                     break;
                 case "Projects":
-                    NavigationService.Navigate<ProjectsViewModel>(new ProjectListArgs { OrderByDesc = r => r.ListPrice });
+                    NavigationService.Navigate<ProjectsViewModel>(new ProjectListArgs { OrderByDesc = r => r.ProjectID });
                     break;
                 default:
                     break;

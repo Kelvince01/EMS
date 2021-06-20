@@ -27,7 +27,7 @@ namespace EMS.Data.DataServices.Base
         public async Task<Order> GetOrderAsync(long id)
         {
             return await _dataSource.Orders.Where(r => r.OrderID == id)
-                .Include(r => r.Employee)
+                .Include(r => r.Customer)
                 .FirstOrDefaultAsync();
         }
 

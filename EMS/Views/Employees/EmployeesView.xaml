@@ -56,8 +56,8 @@
                         <PivotItem Header="Employee">
                             <details:EmployeesDetails ViewModel="{x:Bind ViewModel.EmployeeDetails}" />
                         </PivotItem>
-                        <PivotItem Header="Orders">
-                            <details:EmployeesOrders ViewModel="{x:Bind ViewModel.EmployeeOrders}" />
+                        <PivotItem Header="Projects">
+                            <details:EmployeesProjects ViewModel="{x:Bind ViewModel.EmployeeProjects}" />
                         </PivotItem>
                     </Pivot>
                 </section:Section>
