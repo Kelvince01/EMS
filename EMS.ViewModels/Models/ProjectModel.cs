@@ -22,7 +22,7 @@ namespace EMS.ViewModels.Models
 {
     public class ProjectModel : ObservableObject
     {
-        static public ProjectModel CreateEmpty() => new ProjectModel { ProjectID = -1, IsEmpty = true };
+        static public ProjectModel CreateEmpty() => new ProjectModel { ProjectID = -1, CustomerID = -1, EmployeeID = -1, IsEmpty = true };
 
         public long ProjectID { get; set; }
 
@@ -32,35 +32,26 @@ namespace EMS.ViewModels.Models
 
         public long EmployeeID { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual CustomerModel Customer { get; set; }
+        public virtual EmployeeModel Employee { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
 
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public DateTimeOffset? StartDate { get; set; }
-        public DateTimeOffset? EndDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
 
-        public double Progress { get; set; }
+        public int Progress { get; set; }
         private int _status;
         public int Status
         {
             get => _status;
-            set { if (Set(ref _status, value)) UpdateStatusDependencies(); }
+            set => Set(ref _status, value);
         }
 
-        public string Size { get; set; }
-        public string Color { get; set; }
-
-        public decimal ListPrice { get; set; }
-        public decimal DealerPrice { get; set; }
+        public decimal Price { get; set; }
         public int TaxType { get; set; }
-        public decimal Discount { get; set; }
-        public DateTimeOffset? DiscountStartDate { get; set; }
-        public DateTimeOffset? DiscountEndDate { get; set; }
-
-        public int StockUnits { get; set; }
-        public int SafetyStockLevel { get; set; }
 
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset LastModifiedOn { get; set; }
@@ -76,7 +67,7 @@ namespace EMS.ViewModels.Models
 
         public string StatusDesc => LookupTablesProxy.Instance.GetOrderStatus(Status);
 
-        private void UpdateStatusDependencies()
+        /*private void UpdateStatusDependencies()
         {
             switch (Status)
             {
@@ -96,7 +87,7 @@ namespace EMS.ViewModels.Models
             }
 
             NotifyPropertyChanged(nameof(StatusDesc));
-        }
+        }*/
 
         public override void Merge(ObservableObject source)
         {
@@ -112,20 +103,16 @@ namespace EMS.ViewModels.Models
             {
                 ProjectID = source.ProjectID;
                 CategoryID = source.CategoryID;
+                EmployeeID = source.EmployeeID;
+                CustomerID = source.CustomerID;
                 Name = source.Name;
                 Description = source.Description;
-                Size = source.Size;
-                Color = source.Color;
-                ListPrice = source.ListPrice;
-                DealerPrice = source.DealerPrice;
+                Price = source.Price;
                 TaxType = source.TaxType;
-                Discount = source.Discount;
-                DiscountStartDate = source.DiscountStartDate;
-                DiscountEndDate = source.DiscountEndDate;
-                StockUnits = source.StockUnits;
-                SafetyStockLevel = source.SafetyStockLevel;
                 CreatedOn = source.CreatedOn;
                 LastModifiedOn = source.LastModifiedOn;
+                Status = source.Status;
+                Progress = source.Progress;
                 Picture = source.Picture;
                 PictureSource = source.PictureSource;
                 Thumbnail = source.Thumbnail;
@@ -135,7 +122,7 @@ namespace EMS.ViewModels.Models
 
         public override string ToString()
         {
-            return Name;
+            return ProjectID.ToString();
         }
     }
 }

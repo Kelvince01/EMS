@@ -27,6 +27,7 @@ namespace EMS.ViewModels.Services
         Task<IList<ProjectModel>> GetProjectsAsync(DataRequest<Project> request);
         Task<IList<ProjectModel>> GetProjectsAsync(int skip, int take, DataRequest<Project> request);
         Task<int> GetProjectsCountAsync(DataRequest<Project> request);
+        Task<ProjectModel> CreateNewProjectAsync(long employeeID);
 
         Task<int> UpdateProjectAsync(ProjectModel model);
 

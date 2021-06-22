@@ -148,7 +148,7 @@ namespace EMS.Services
                 model.BirthDate = source.BirthDate;
                 model.Education = source.Education;
                 model.Occupation = source.Occupation;
-                model.YearlyIncome = source.YearlyIncome;
+                model.Salary = source.Salary;
                 model.MaritalStatus = source.MaritalStatus;
                 model.TotalChildren = source.TotalChildren;
                 model.ChildrenAtHome = source.ChildrenAtHome;
@@ -179,7 +179,7 @@ namespace EMS.Services
             target.BirthDate = source.BirthDate;
             target.Education = source.Education;
             target.Occupation = source.Occupation;
-            target.YearlyIncome = source.YearlyIncome;
+            target.Salary = source.Salary;
             target.MaritalStatus = source.MaritalStatus;
             target.TotalChildren = source.TotalChildren;
             target.ChildrenAtHome = source.ChildrenAtHome;

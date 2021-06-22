@@ -244,11 +244,23 @@
     <Compile Include="Views\Charts\MapsView.xaml.cs">
       <DependentUpon>MapsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Charts\SyncFusionChart.xaml.cs">
+      <DependentUpon>SyncFusionChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\SyncfusionGanttView.xaml.cs">
+      <DependentUpon>SyncfusionGanttView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charts\WebViewTwo.xaml.cs">
+      <DependentUpon>WebViewTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Charts\WebviewView.xaml.cs">
       <DependentUpon>WebviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Companys\CompanysView.xaml.cs">
       <DependentUpon>CompanysView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Companys\Details\CompanyAbout.xaml.cs">
+      <DependentUpon>CompanyAbout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Companys\Details\CompanysCard.xaml.cs">
       <DependentUpon>CompanysCard.xaml</DependentUpon>
@@ -415,14 +427,23 @@
     <Compile Include="Views\Projects\List\ProjectsList.xaml.cs">
       <DependentUpon>ProjectsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Projects\Parts\ProjectsDetails.xaml.cs">
+      <DependentUpon>ProjectsDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Projects\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Project\Details\ProjectCard.xaml.cs">
       <DependentUpon>ProjectCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Project\Details\ProjectCharts.xaml.cs">
+      <DependentUpon>ProjectCharts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Project\Details\ProjectDetails.xaml.cs">
       <DependentUpon>ProjectDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Project\Details\ProjectGantt.xaml.cs">
+      <DependentUpon>ProjectGantt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Project\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
@@ -447,6 +468,30 @@
     </Compile>
     <Compile Include="Views\SplashScreen\ExtendedSplash.xaml.cs">
       <DependentUpon>ExtendedSplash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\Parts\AppStatistics.xaml.cs">
+      <DependentUpon>AppStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\Parts\CompanyStatistics.xaml.cs">
+      <DependentUpon>CompanyStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\Parts\CustomerStatistics.xaml.cs">
+      <DependentUpon>CustomerStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\Parts\EmployeeStatistics.xaml.cs">
+      <DependentUpon>EmployeeStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\Parts\FinancialStatistics.xaml.cs">
+      <DependentUpon>FinancialStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\Parts\OrdersStatistics.xaml.cs">
+      <DependentUpon>OrdersStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\Parts\ProjectsStatistics.xaml.cs">
+      <DependentUpon>ProjectsStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\StatisticsView.xaml.cs">
+      <DependentUpon>StatisticsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -597,11 +642,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Charts\SyncFusionChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\SyncfusionGanttView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charts\WebViewTwo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Charts\WebviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Companys\CompanysView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Companys\Details\CompanyAbout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -825,6 +886,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Projects\Parts\ProjectsDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Projects\ProjectsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -833,9 +898,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Project\Details\ProjectCharts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Project\Details\ProjectDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Project\Details\ProjectGantt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Project\ProjectView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -866,6 +939,38 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SplashScreen\ExtendedSplash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\Parts\AppStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\Parts\CompanyStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\Parts\CustomerStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\Parts\EmployeeStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\Parts\FinancialStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\Parts\OrdersStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\Parts\ProjectsStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\StatisticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

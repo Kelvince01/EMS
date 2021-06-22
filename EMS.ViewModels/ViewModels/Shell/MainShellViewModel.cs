@@ -28,7 +28,9 @@ using EMS.ViewModels.ViewModels.Employees;
 using EMS.ViewModels.ViewModels.Mails;
 using EMS.ViewModels.ViewModels.Orders;
 using EMS.ViewModels.ViewModels.Projects;
+using EMS.ViewModels.ViewModels.Reports;
 using EMS.ViewModels.ViewModels.Settings;
+using EMS.ViewModels.ViewModels.Statistics;
 
 namespace EMS.ViewModels.ViewModels.Shell
 {
@@ -44,6 +46,8 @@ namespace EMS.ViewModels.ViewModels.Shell
         private readonly NavigationItem MailsItem = new NavigationItem(0x0000, "Mails", typeof(MailsViewModel));
         private readonly NavigationItem CompanyItem = new NavigationItem(0x0000, "Company", typeof(CompanyViewModel));
         private readonly NavigationItem ChartsItem = new NavigationItem(0x0000, "Charts", typeof(ChartsViewModel));
+        private readonly NavigationItem ReportsItem = new NavigationItem(0x0000, "Charts", typeof(ReportsViewModel));
+        private readonly NavigationItem StatisticsItem = new NavigationItem(0x0000, "Charts", typeof(StatisticsViewModel));
 
         public MainShellViewModel(ILoginService loginService, ICommonServices commonServices) : base(loginService, commonServices)
         {
@@ -129,6 +133,12 @@ namespace EMS.ViewModels.ViewModels.Shell
                 case "ChartsViewModel":
                     NavigationService.Navigate(viewModel, new ChartsArgs());
                     break;
+                case "ReportsViewModel":
+                    NavigationService.Navigate(viewModel, new ReportsArgs());
+                    break;
+                case "StatisticsViewModel":
+                    NavigationService.Navigate(viewModel, new StatisticsArgs());
+                    break;
                 default:
                     throw new NotImplementedException();
             }
@@ -145,6 +155,8 @@ namespace EMS.ViewModels.ViewModels.Shell
             yield return MailsItem;
             yield return CompanyItem;
             yield return ChartsItem;
+            yield return ReportsItem;
+            yield return StatisticsItem;
         }
 
         private async void OnLogServiceMessage(ILogService logService, string message, AppLog log)

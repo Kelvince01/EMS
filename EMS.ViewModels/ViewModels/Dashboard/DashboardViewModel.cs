@@ -30,12 +30,12 @@ namespace EMS.ViewModels.ViewModels.Dashboard
 {
     public class DashboardViewModel : ViewModelBase
     {
-        public DashboardViewModel(IEmployeeService employeeService, ICustomerService customerService, IOrderService orderService, IProjectService projectService, ICommonServices commonServices) : base(commonServices)
+        public DashboardViewModel(IEmployeeService employeeService, ICustomerService customerService, IOrderService orderService, IProjectService productService, ICommonServices commonServices) : base(commonServices)
         {
             EmployeeService = employeeService;
             CustomerService = customerService;
             OrderService = orderService;
-            ProjectService = projectService;
+            ProjectService = productService;
         }
 
         public IEmployeeService EmployeeService { get; }
@@ -57,11 +57,11 @@ namespace EMS.ViewModels.ViewModels.Dashboard
             set => Set(ref _customers, value);
         }
 
-        private IList<ProjectModel> _projects = null;
+        private IList<ProjectModel> _products = null;
         public IList<ProjectModel> Projects
         {
-            get => _projects;
-            set => Set(ref _projects, value);
+            get => _products;
+            set => Set(ref _products, value);
         }
 
         private IList<OrderModel> _orders = null;
@@ -95,7 +95,6 @@ namespace EMS.ViewModels.ViewModels.Dashboard
                 var request = new DataRequest<Employee>
                 {
                     OrderByDesc = r => r.EmployeeID
-                    //OrderByDesc = r => r.CreatedOn
                 };
                 Employees = await EmployeeService.GetEmployeesAsync(0, 5, request);
             }
@@ -112,7 +111,6 @@ namespace EMS.ViewModels.ViewModels.Dashboard
                 var request = new DataRequest<Customer>
                 {
                     OrderByDesc = r => r.CustomerID
-                    //OrderByDesc = r => r.CreatedOn
                 };
                 Customers = await CustomerService.GetCustomersAsync(0, 5, request);
             }
@@ -129,7 +127,6 @@ namespace EMS.ViewModels.ViewModels.Dashboard
                 var request = new DataRequest<Order>
                 {
                     OrderByDesc = r => r.OrderID
-                    //OrderByDesc = r => r.OrderDate
                 };
                 Orders = await OrderService.GetOrdersAsync(0, 5, request);
             }
@@ -145,7 +142,6 @@ namespace EMS.ViewModels.ViewModels.Dashboard
             {
                 var request = new DataRequest<Project>
                 {
-                    //OrderByDesc = r => r.CreatedOn
                     OrderByDesc = r => r.ProjectID
                 };
                 Projects = await ProjectService.GetProjectsAsync(0, 5, request);

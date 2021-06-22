@@ -55,7 +55,7 @@ namespace EMS.Data.Data
         public string Education { get; set; }
         [MaxLength(100)]
         public string Occupation { get; set; }
-        public decimal? YearlyIncome { get; set; }
+        public decimal? Salary { get; set; }
         [MaxLength(1)]
         public string MaritalStatus { get; set; }
         public int? TotalChildren { get; set; }
@@ -72,7 +72,7 @@ namespace EMS.Data.Data
         public byte[] Picture { get; set; }
         public byte[] Thumbnail { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
 
         public string BuildSearchTerms() => $"{EmployeeID} {FirstName} {LastName} {EmailAddress} {AddressLine1}".ToLower();
     }

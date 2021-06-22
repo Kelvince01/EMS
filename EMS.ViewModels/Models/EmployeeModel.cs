@@ -43,7 +43,7 @@ namespace EMS.ViewModels.Models
         public DateTimeOffset? BirthDate { get; set; }
         public string Education { get; set; }
         public string Occupation { get; set; }
-        public decimal? YearlyIncome { get; set; }
+        public decimal? Salary { get; set; }
         public string MaritalStatus { get; set; }
         public int? TotalChildren { get; set; }
         public int? ChildrenAtHome { get; set; }
@@ -102,7 +102,7 @@ namespace EMS.ViewModels.Models
                 BirthDate = source.BirthDate;
                 Education = source.Education;
                 Occupation = source.Occupation;
-                YearlyIncome = source.YearlyIncome;
+                Salary = source.Salary;
                 MaritalStatus = source.MaritalStatus;
                 TotalChildren = source.TotalChildren;
                 ChildrenAtHome = source.ChildrenAtHome;

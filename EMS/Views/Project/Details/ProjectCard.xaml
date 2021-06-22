@@ -52,25 +52,25 @@
             <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.LastModifiedOn, Mode=OneWay, Converter={StaticResource DateTimeFormatConverter}}" />
 
             <Rectangle Style="{StaticResource CardSeparator}"/>
-            <TextBlock Style="{StaticResource CardSection}" Text="Price"  />
+            <TextBlock Style="{StaticResource CardSection}" Text="Price and Dates"  />
 
-            <TextBlock Style="{StaticResource CardHeader}" Text="List Price" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.ListPrice, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardHeader}" Text="Price" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Price, Mode=OneWay}" />
 
-            <TextBlock Style="{StaticResource CardHeader}" Text="Dealer Price" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.DealerPrice, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardHeader}" Text="Start Date" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.StartDate, Mode=OneWay}" />
 
-            <TextBlock Style="{StaticResource CardHeader}" Text="Discount" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Discount, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardHeader}" Text="End Date" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.EndDate, Mode=OneWay}" />
 
             <Rectangle Style="{StaticResource CardSeparator}"/>
-            <TextBlock Style="{StaticResource CardSection}" Text="Stock"  />
+            <TextBlock Style="{StaticResource CardSection}" Text="Status and Progress"  />
 
-            <TextBlock Style="{StaticResource CardHeader}" Text="Stock Units" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.StockUnits, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardHeader}" Text="Status" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Status, Mode=OneWay}" />
 
-            <TextBlock Style="{StaticResource CardHeader}" Text="Safety Stock" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.SafetyStockLevel, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardHeader}" Text="Progress" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Progress, Mode=OneWay}" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

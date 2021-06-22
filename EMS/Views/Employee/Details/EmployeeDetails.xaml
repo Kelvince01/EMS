@@ -40,7 +40,7 @@
                 <forms:FormTextBox Header="Education" Text="{x:Bind EditableItem.Education, Mode=TwoWay}" />
                 <fluidGrid:FluidGrid Columns="2" ColumnSpacing="6" RowSpacing="12" MinColumnWidth="80">
                     <forms:FormTextBox Header="Occupation" Text="{x:Bind EditableItem.Occupation, Mode=TwoWay}" />
-                    <forms:FormTextBox Header="Yearly Income" Text="{x:Bind EditableItem.YearlyIncome, Mode=TwoWay, Converter={StaticResource BindingTypeConverter}}" DataType="Decimal" />
+                    <forms:FormTextBox Header="Salary" Text="{x:Bind EditableItem.Salary, Mode=TwoWay, Converter={StaticResource BindingTypeConverter}}" DataType="Decimal" />
                 </fluidGrid:FluidGrid>
                 <fluidGrid:FluidGrid Columns="2" ColumnSpacing="6" RowSpacing="12" MinColumnWidth="80">
                     <forms:FormTextBox Header="Marital Status" Text="{x:Bind EditableItem.MaritalStatus, Mode=TwoWay}" />

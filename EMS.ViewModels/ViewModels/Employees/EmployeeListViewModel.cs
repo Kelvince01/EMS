@@ -36,7 +36,7 @@ namespace EMS.ViewModels.ViewModels.Employees
 
         public EmployeeListArgs()
         {
-            OrderBy = r => r.FirstName;
+            OrderBy = r => r.EmployeeID;
         }
 
         public bool IsEmpty { get; set; }

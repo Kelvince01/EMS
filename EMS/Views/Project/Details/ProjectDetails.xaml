@@ -8,24 +8,35 @@
     xmlns:forms="using:EMS.Controls.Forms" 
     xmlns:details="using:EMS.Controls.Details" 
     xmlns:projects="using:EMS.ViewModels.ViewModels.Projects" 
-    xmlns:details1="using:EMS.Views.Project.Details"
+    xmlns:details1="using:EMS.Views.Project.Details" 
+    xmlns:converters="using:EMS.Converters" 
+    xmlns:controls="using:EMS.Views.Controls"
     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600">
 
     <UserControl.Resources>
+        <converters:BindingTypeConverter x:Key="BindingTypeConverter"/>
         <DataTemplate x:Key="DetailsTemplate" x:DataType="projects:ProjectDetailsViewModel">
             <fluidGrid:FluidGrid Margin="12,18,6,6" Columns="2" ColumnSpacing="12" RowSpacing="12">
                 <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="General" />
+                <controls:CustomerSuggestBox DisplayText="{x:Bind EditableItem.Customer.CustomerID, Mode=OneWay}"
+                                             CustomerSelectedCommand="{x:Bind CustomerSelectedCommand}"
+                                             IsReadOnly="{x:Bind CanEditCustomer, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}" />
+                <controls:EmployeeSuggestBox DisplayText="{x:Bind EditableItem.Employee.EmployeeID, Mode=OneWay}"
+                                             EmployeeSelectedCommand="{x:Bind EmployeeSelectedCommand}"
+                                             IsReadOnly="{x:Bind CanEditEmployee, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}" />
+
                 <forms:FormTextBox Header="Name" Text="{x:Bind EditableItem.Name, Mode=TwoWay}" />
                 <forms:FormComboBox Header="Category" ItemsSource="{x:Bind LookupTables.Categories}" SelectedValue="{x:Bind EditableItem.CategoryID, Mode=TwoWay}" SelectedValuePath="CategoryID" DisplayMemberPath="Name" />
 
-                <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Price" />
-                <forms:FormTextBox Header="List Price" Text="{x:Bind EditableItem.ListPrice, Mode=TwoWay, Converter={StaticResource DecimalConverter}}" DataType="Decimal" Format="0.00" />
-                <forms:FormTextBox Header="Dealer Price" Text="{x:Bind EditableItem.DealerPrice, Mode=TwoWay, Converter={StaticResource DecimalConverter}}" DataType="Decimal" Format="0.00" />
-                <forms:FormTextBox Header="Discount" Text="{x:Bind EditableItem.Discount, Mode=TwoWay, Converter={StaticResource DecimalConverter}}" DataType="Decimal" Format="0.00" />
+                <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Price and Dates" />
+                <forms:FormTextBox Header="Price" Text="{x:Bind EditableItem.Price, Mode=TwoWay, Converter={StaticResource DecimalConverter}}" DataType="Decimal" Format="0.00" />
+                <forms:FormCalendarDatePicker Header="Start Date" Date="{x:Bind EditableItem.StartDate, Mode=TwoWay, Converter={StaticResource DateTimeOffsetConverter}}" />
+                <forms:FormCalendarDatePicker Header="End Date" Date="{x:Bind EditableItem.EndDate, Mode=TwoWay, Converter={StaticResource DateTimeOffsetConverter}}" />
 
-                <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Stock" />
-                <forms:FormTextBox Header="Stock Units" Text="{x:Bind EditableItem.StockUnits, Mode=TwoWay}" DataType="Integer" />
-                <forms:FormTextBox Header="Safety Stock" Text="{x:Bind EditableItem.SafetyStockLevel, Mode=TwoWay}" DataType="Integer" />
+                <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Status and Progress" />
+                <forms:FormComboBox Header="Status" ItemsSource="{x:Bind LookupTables.ProjectStatus}"
+                                    SelectedValue="{x:Bind EditableItem.Status, Mode=TwoWay, Converter={StaticResource Int32Converter}}" SelectedValuePath="Status" DisplayMemberPath="Name" />
+                <forms:FormTextBox Header="Progress" Text="{x:Bind EditableItem.Progress, Mode=TwoWay, Converter={StaticResource BindingTypeConverter}}" DataType="Integer" />
 
                 <TextBlock Style="{StaticResource FormsSection}" fluidGrid:FluidGrid.ColumnSpan="2" Text="Details" />
                 <forms:FormTextBox fluidGrid:FluidGrid.ColumnSpan="2" Header="Description" Text="{x:Bind EditableItem.Description, Mode=TwoWay}" TextWrapping="Wrap" AcceptsReturn="True" />

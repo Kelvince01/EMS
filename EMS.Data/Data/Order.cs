@@ -14,6 +14,7 @@ namespace EMS.Data.Data
 
         [Required]
         public long CustomerID { get; set; }
+        public long EmployeeID { get; set; }
 
         [Required]
         public DateTimeOffset OrderDate { get; set; }

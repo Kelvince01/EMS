@@ -22,7 +22,8 @@ namespace EMS.Data.Data
         public long EmployeeID { get; set; }
 
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual Employee Employee { get; set; }
+        //public virtual ICollection<Employee> Employees { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -33,29 +34,13 @@ namespace EMS.Data.Data
         public DateTimeOffset? StartDate { get; set; }
         public DateTimeOffset? EndDate { get; set; }
 
-        public double Progress { get; set; }
-        public string Status { get; set; }
-
-        [MaxLength(4)]
-        public string Size { get; set; }
-        [MaxLength(50)]
-        public string Color { get; set; }
+        public int Progress { get; set; }
+        public int Status { get; set; }
 
         [Required]
-        public decimal ListPrice { get; set; }
-        [Required]
-        public decimal DealerPrice { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public int TaxType { get; set; }
-        [Required]
-        public decimal Discount { get; set; }
-        public DateTimeOffset? DiscountStartDate { get; set; }
-        public DateTimeOffset? DiscountEndDate { get; set; }
-
-        [Required]
-        public int StockUnits { get; set; }
-        [Required]
-        public int SafetyStockLevel { get; set; }
 
         [Required]
         public DateTimeOffset CreatedOn { get; set; }

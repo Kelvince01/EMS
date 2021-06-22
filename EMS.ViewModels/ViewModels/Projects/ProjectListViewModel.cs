@@ -36,7 +36,7 @@ namespace EMS.ViewModels.ViewModels.Projects
 
         public ProjectListArgs()
         {
-            OrderBy = r => r.Name;
+            OrderBy = r => r.ProjectID;
         }
 
         public bool IsEmpty { get; set; }

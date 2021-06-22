@@ -60,7 +60,7 @@ namespace EMS.ViewModels.ViewModels.OrderItems
         private void ProjectSelected(ProjectModel project)
         {
             EditableItem.ProjectID = project.ProjectID;
-            EditableItem.UnitPrice = project.ListPrice;
+            EditableItem.UnitPrice = project.Price;
             EditableItem.Project = project;
 
             EditableItem.NotifyChanges();

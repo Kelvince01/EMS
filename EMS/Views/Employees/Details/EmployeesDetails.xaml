@@ -20,7 +20,7 @@
                     <forms:FormTextBox Header="Middle Name" Text="{x:Bind EditableItem.MiddleName, Mode=TwoWay}" />
                     <forms:FormTextBox Header="Sufix" Text="{x:Bind EditableItem.Suffix, Mode=TwoWay}" />
                 </fluidGrid:FluidGrid>
-                <forms:FormTextBox Header="EMail Address" Text="{x:Bind EditableItem.EmailAddress, Mode=TwoWay}" />
+                <forms:FormTextBox Header="Email Address" Text="{x:Bind EditableItem.EmailAddress, Mode=TwoWay}" />
                 <forms:FormTextBox Header="Phone" Text="{x:Bind EditableItem.Phone, Mode=TwoWay}" />
                 <forms:FormTextBox Header="Address" Text="{x:Bind EditableItem.AddressLine1, Mode=TwoWay}" />
 

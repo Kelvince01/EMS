@@ -34,8 +34,10 @@ using EMS.ViewModels.ViewModels.Mails;
 using EMS.ViewModels.ViewModels.OrderItems;
 using EMS.ViewModels.ViewModels.Orders;
 using EMS.ViewModels.ViewModels.Projects;
+using EMS.ViewModels.ViewModels.Reports;
 using EMS.ViewModels.ViewModels.Settings;
 using EMS.ViewModels.ViewModels.Shell;
+using EMS.ViewModels.ViewModels.Statistics;
 using EMS.Views.AppLogs;
 using EMS.Views.Charts;
 using EMS.Views.Company;
@@ -59,6 +61,8 @@ using Microsoft.Extensions.DependencyInjection;
 using EMS.Views.Companys;
 using EMS.Views.Customer;
 using EMS.Views.Customers;
+using EMS.Views.Reports;
+using EMS.Views.Statistics;
 
 namespace EMS.Configuration
 {
@@ -119,6 +123,9 @@ namespace EMS.Configuration
             NavigationService.Register<SettingsViewModel, SettingsView>();
             
             NavigationService.Register<ChartsViewModel, ChartsMainView>();
+
+            NavigationService.Register<ReportsViewModel, ReportsView>();
+            NavigationService.Register<StatisticsViewModel, StatisticsView>();
         }
 
         static private async Task EnsureLogDbAsync()

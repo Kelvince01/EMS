@@ -93,7 +93,6 @@ namespace EMS.ViewModels.ViewModels.Orders
             }
             NotifyPropertyChanged(nameof(ItemIsNew));
         }
-
         public void Unload()
         {
             ViewModelArgs.CustomerID = Item?.CustomerID ?? 0;

@@ -192,12 +192,14 @@
     <Compile Include="ViewModels\Projects\ProjectDetailsViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectListViewModel.cs" />
     <Compile Include="ViewModels\Projects\ProjectsViewModel.cs" />
+    <Compile Include="ViewModels\Reports\ReportsViewModel.cs" />
     <Compile Include="ViewModels\Settings\CreateDatabaseViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\ValidateConnectionViewModel.cs" />
     <Compile Include="ViewModels\Shell\MainShellViewModel.cs" />
     <Compile Include="ViewModels\Shell\NavigationItem.cs" />
     <Compile Include="ViewModels\Shell\ShellViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticsViewModel.cs" />
     <EmbeddedResource Include="Properties\EMS.ViewModels.rd.xml" />
   </ItemGroup>
   <ItemGroup>

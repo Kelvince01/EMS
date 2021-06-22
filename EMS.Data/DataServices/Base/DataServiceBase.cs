@@ -46,6 +46,11 @@ namespace EMS.Data.DataServices.Base
             return await _dataSource.OrderStatus.ToListAsync();
         }
 
+        public async Task<IList<ProjectStatus>> GetProjectStatusAsync()
+        {
+            return await _dataSource.ProjectStatus.ToListAsync();
+        }
+
         public async Task<IList<PaymentType>> GetPaymentTypesAsync()
         {
             return await _dataSource.PaymentTypes.ToListAsync();

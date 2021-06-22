@@ -18,7 +18,7 @@
             <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.OrderDate, Mode=OneWay, Converter={StaticResource DateTimeFormatConverter}}" />
 
             <Rectangle Style="{StaticResource CardSeparator}"/>
-            <TextBlock Style="{StaticResource CardSection}" Text="Employee"  />
+            <TextBlock Style="{StaticResource CardSection}" Text="Customer"  />
 
             <StackPanel Orientation="Horizontal" Margin="0,3,0,9">
                 <PersonPicture ProfilePicture="{x:Bind Item.Customer.PictureSource, Mode=OneWay, Converter={StaticResource ObjectToImageConverter}}" 
@@ -28,7 +28,7 @@
                 <TextBlock Style="{StaticResource CardText}" VerticalAlignment="Center" Margin="9,0" Text="{x:Bind Item.Customer.FullName, Mode=OneWay}" />
             </StackPanel>
 
-            <TextBlock Style="{StaticResource CardHeader}" Text="Employee ID" />
+            <TextBlock Style="{StaticResource CardHeader}" Text="Customer ID" />
             <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.CustomerID, Mode=OneWay}" />
 
             <TextBlock Style="{StaticResource CardHeader}" Text="Email" />

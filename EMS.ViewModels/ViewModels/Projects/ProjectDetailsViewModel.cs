@@ -28,9 +28,13 @@ namespace EMS.ViewModels.ViewModels.Projects
     #region ProjectDetailsArgs
     public class ProjectDetailsArgs
     {
-        static public ProjectDetailsArgs CreateDefault() => new ProjectDetailsArgs();
+        static public ProjectDetailsArgs CreateDefault() => new ProjectDetailsArgs { CustomerID = 0, EmployeeID = 0};
 
         public long ProjectID { get; set; }
+
+        public long CustomerID { get; set; }
+        
+        public long EmployeeID { get; set; }
 
         public bool IsNew => ProjectID <= 0;
     }
@@ -52,6 +56,28 @@ namespace EMS.ViewModels.ViewModels.Projects
 
         public override bool ItemIsNew => Item?.IsNew ?? true;
 
+        public bool CanEditCustomer => Item?.CustomerID <= 0;
+
+        public ICommand CustomerSelectedCommand => new RelayCommand<CustomerModel>(CustomerSelected);
+        private void CustomerSelected(CustomerModel customer)
+        {
+            EditableItem.CustomerID = customer.CustomerID;
+            EditableItem.Customer = customer;
+
+            EditableItem.NotifyChanges();
+        }
+
+        public bool CanEditEmployee => Item?.EmployeeID <= 0;
+
+        public ICommand EmployeeSelectedCommand => new RelayCommand<EmployeeModel>(EmployeeSelected);
+        private void EmployeeSelected(EmployeeModel employee)
+        {
+            EditableItem.EmployeeID = employee.EmployeeID;
+            EditableItem.Employee = employee;
+
+            EditableItem.NotifyChanges();
+        }
+
         public ProjectDetailsArgs ViewModelArgs { get; private set; }
 
         public async Task LoadAsync(ProjectDetailsArgs args)
@@ -60,7 +86,10 @@ namespace EMS.ViewModels.ViewModels.Projects
 
             if (ViewModelArgs.IsNew)
             {
-                Item = new ProjectModel();
+                //Item = new ProjectModel();
+                //IsEditMode = true;
+
+                Item = await ProjectService.CreateNewProjectAsync(ViewModelArgs.EmployeeID);
                 IsEditMode = true;
             }
             else
@@ -75,10 +104,13 @@ namespace EMS.ViewModels.ViewModels.Projects
                     LogException("Project", "Load", ex);
                 }
             }
+            NotifyPropertyChanged(nameof(ItemIsNew));
         }
         public void Unload()
         {
             ViewModelArgs.ProjectID = Item?.ProjectID ?? 0;
+            ViewModelArgs.EmployeeID = Item?.EmployeeID ?? 0;
+            ViewModelArgs.CustomerID = Item?.CustomerID ?? 0;
         }
 
         public void Subscribe()
@@ -95,6 +127,8 @@ namespace EMS.ViewModels.ViewModels.Projects
         {
             return new ProjectDetailsArgs
             {
+                CustomerID = Item?.CustomerID ?? 0,
+                EmployeeID = Item?.EmployeeID ?? 0,
                 ProjectID = Item?.ProjectID ?? 0
             };
         }
@@ -176,6 +210,8 @@ namespace EMS.ViewModels.ViewModels.Projects
 
         override protected IEnumerable<IValidationConstraint<ProjectModel>> GetValidationConstraints(ProjectModel model)
         {
+            yield return new RequiredGreaterThanZeroConstraint<ProjectModel>("Employee", m => m.EmployeeID);
+            yield return new RequiredGreaterThanZeroConstraint<ProjectModel>("Customer", m => m.CustomerID);
             yield return new RequiredConstraint<ProjectModel>("Name", m => m.Name);
             yield return new RequiredGreaterThanZeroConstraint<ProjectModel>("Category", m => m.CategoryID);
         }

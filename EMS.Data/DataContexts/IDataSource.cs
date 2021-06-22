@@ -28,6 +28,7 @@ namespace EMS.Data.DataContexts
         DbSet<Category> Categories { get; }
         DbSet<CountryCode> CountryCodes { get; }
         DbSet<OrderStatus> OrderStatus { get; }
+        DbSet<ProjectStatus> ProjectStatus { get; }
         DbSet<PaymentType> PaymentTypes { get; }
         DbSet<Shipper> Shippers { get; }
         DbSet<TaxType> TaxTypes { get; }

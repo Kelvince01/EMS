@@ -20,10 +20,11 @@ namespace EMS.ViewModels.Models
 {
     public class OrderModel : ObservableObject
     {
-        static public OrderModel CreateEmpty() => new OrderModel { OrderID = -1, CustomerID = -1, IsEmpty = true };
+        static public OrderModel CreateEmpty() => new OrderModel { OrderID = -1, CustomerID = -1, EmployeeID = -1, IsEmpty = true };
 
         public long OrderID { get; set; }
         public long CustomerID { get; set; }
+        public long EmployeeID { get; set; }
 
         private DateTimeOffset _orderDate;
         public DateTimeOffset OrderDate
@@ -116,6 +117,7 @@ namespace EMS.ViewModels.Models
             {
                 OrderID = source.OrderID;
                 CustomerID = source.CustomerID;
+                EmployeeID = source.EmployeeID;
                 OrderDate = source.OrderDate;
                 ShippedDate = source.ShippedDate;
                 DeliveredDate = source.DeliveredDate;

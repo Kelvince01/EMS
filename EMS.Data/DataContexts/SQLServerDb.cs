@@ -52,6 +52,7 @@ namespace EMS.Data.DataContexts
         public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<TaxType> TaxTypes { get; set; }
         public DbSet<OrderStatus> OrderStatus { get; set; }
+        public DbSet<ProjectStatus> ProjectStatus { get; set; }
         public DbSet<Shipper> Shippers { get; set; }
     }
 }

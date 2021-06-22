@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="EMS.Views.Charts.SyncfusionGanttView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EMS.Views.Charts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:gantt="using:Syncfusion.UI.Xaml.Gantt"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.DataContext>
+            <local:ProjectTrackerViewModel/>
+        </Grid.DataContext>
+
+        <gantt:SfGantt x:Name="Gantt" ItemsSource="{Binding TaskCollection}">
+            <gantt:SfGantt.TimescaleSettings>
+                <gantt:TimescaleSettings>
+
+                    <gantt:TimescaleSettings.TopTier>
+                        <gantt:TimescaleTier IntervalType="Weeks" WeeksLabelFormat="ddd MM/dd/yy"/>
+                    </gantt:TimescaleSettings.TopTier>
+
+                </gantt:TimescaleSettings>
+            </gantt:SfGantt.TimescaleSettings>
+        </gantt:SfGantt>
+    </Grid>
+</UserControl>

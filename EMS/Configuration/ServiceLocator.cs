@@ -32,8 +32,10 @@ using EMS.ViewModels.ViewModels.Login;
 using EMS.ViewModels.ViewModels.OrderItems;
 using EMS.ViewModels.ViewModels.Orders;
 using EMS.ViewModels.ViewModels.Projects;
+using EMS.ViewModels.ViewModels.Reports;
 using EMS.ViewModels.ViewModels.Settings;
 using EMS.ViewModels.ViewModels.Shell;
+using EMS.ViewModels.ViewModels.Statistics;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -100,6 +102,9 @@ namespace EMS.Configuration
             serviceCollection.AddTransient<CreateDatabaseViewModel>();
             
             serviceCollection.AddTransient<ChartsViewModel>();
+
+            serviceCollection.AddTransient<ReportsViewModel>();
+            serviceCollection.AddTransient<StatisticsViewModel>();
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }

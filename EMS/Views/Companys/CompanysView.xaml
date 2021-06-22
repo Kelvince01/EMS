@@ -22,45 +22,52 @@
           BorderThickness="1,0,0,0">
         <windowTitle:WindowTitle Prefix="Companys" Title="{x:Bind ViewModel.CompanyList.Title, Mode=OneWay}" />
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Pivot x:Name="rootPivot">
+            <PivotItem Header="The Company">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-            <!--Companys-->
-            <Grid Grid.RowSpan="{x:Bind GetRowSpan(ViewModel.CompanyList.IsMultipleSelection), Mode=OneWay}">
-                <section:Section Header="{x:Bind ViewModel.CompanyList.Title, Mode=OneWay}" 
-                                  HeaderTemplate="{StaticResource ListHeaderTemplate}"
-                                  HeaderButtonGlyph="&#xE2B4;" 
-                                  HeaderButtonClick="OpenInNewView"
-                                  IsButtonVisible="{x:Bind ViewModel.IsMainView}">
-                    <list:CompanysList ViewModel="{x:Bind ViewModel.CompanyList}" />
-                </section:Section>
-            </Grid>
+                    <!--Companys-->
+                    <Grid Grid.RowSpan="{x:Bind GetRowSpan(ViewModel.CompanyList.IsMultipleSelection), Mode=OneWay}">
+                        <section:Section Header="{x:Bind ViewModel.CompanyList.Title, Mode=OneWay}" 
+                                          HeaderTemplate="{StaticResource ListHeaderTemplate}"
+                                          HeaderButtonGlyph="&#xE2B4;" 
+                                          HeaderButtonClick="OpenInNewView"
+                                          IsButtonVisible="{x:Bind ViewModel.IsMainView}">
+                            <list:CompanysList ViewModel="{x:Bind ViewModel.CompanyList}" />
+                        </section:Section>
+                    </Grid>
 
-            <!--Details-->
-            <Grid Grid.Row="1" 
-                  BorderBrush="LightGray"
-                  BorderThickness="0,1,0,0"
-                  Visibility="{x:Bind ViewModel.CompanyList.IsMultipleSelection, Mode=OneWay, Converter={StaticResource InverseBoolToVisibilityConverter}}">
-                <section:Section IsEnabled="{x:Bind ViewModel.CompanyDetails.IsEnabled, Mode=OneWay}" 
-                                  HeaderButtonGlyph="&#xE2B4;" 
-                                  HeaderButtonClick="OpenDetailsInNewView" 
-                                  Background="{StaticResource DetailsViewBackgroundColor}"
-                                  Visibility="{x:Bind ViewModel.CompanyDetails.IsDataAvailable, Mode=OneWay}">
+                    <!--Details-->
+                    <Grid Grid.Row="1" 
+                          BorderBrush="LightGray"
+                          BorderThickness="0,1,0,0"
+                          Visibility="{x:Bind ViewModel.CompanyList.IsMultipleSelection, Mode=OneWay, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                        <section:Section IsEnabled="{x:Bind ViewModel.CompanyDetails.IsEnabled, Mode=OneWay}" 
+                                          HeaderButtonGlyph="&#xE2B4;" 
+                                          HeaderButtonClick="OpenDetailsInNewView" 
+                                          Background="{StaticResource DetailsViewBackgroundColor}"
+                                          Visibility="{x:Bind ViewModel.CompanyDetails.IsDataAvailable, Mode=OneWay}">
 
-                    <Pivot x:Name="pivot">
-                        <PivotItem Header="Company">
-                            <details:CompanysDetails ViewModel="{x:Bind ViewModel.CompanyDetails}" />
-                        </PivotItem>
-                    </Pivot>
-                </section:Section>
+                            <Pivot x:Name="pivot">
+                                <PivotItem Header="Company">
+                                    <details:CompanysDetails ViewModel="{x:Bind ViewModel.CompanyDetails}" />
+                                </PivotItem>
+                            </Pivot>
+                        </section:Section>
 
-                <!--Empty Details-->
-                <section:Section Header="No item selected" 
-                                  Visibility="{x:Bind ViewModel.CompanyDetails.IsDataUnavailable, Mode=OneWay}" />
-            </Grid>
-        </Grid>
+                        <!--Empty Details-->
+                        <section:Section Header="No item selected" 
+                                          Visibility="{x:Bind ViewModel.CompanyDetails.IsDataUnavailable, Mode=OneWay}" />
+                    </Grid>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Company Details">
+                <details:CompanyAbout />
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

@@ -119,26 +119,45 @@ namespace EMS.Services
             }
         }
 
+        public async Task<ProjectModel> CreateNewProjectAsync(long employeeID)
+        {
+            var model = new ProjectModel
+            {
+                EmployeeID = employeeID,
+                CreatedOn = DateTime.UtcNow,
+                Status = 0
+            };
+            if (employeeID > 0)
+            {
+                using (var dataService = DataServiceFactory.CreateDataService())
+                {
+                    var parent = await dataService.GetEmployeeAsync(employeeID);
+                    if (parent != null)
+                    {
+                        model.EmployeeID = employeeID;
+                        model.Employee = await EmployeeService.CreateEmployeeModelAsync(parent, includeAllFields: true);
+                    }
+                }
+            }
+            return model;
+        }
+
         static public async Task<ProjectModel> CreateProjectModelAsync(Project source, bool includeAllFields)
         {
             var model = new ProjectModel()
             {
                 ProjectID = source.ProjectID,
                 CategoryID = source.CategoryID,
+                EmployeeID = source.EmployeeID,
+                CustomerID = source.CustomerID,
                 Name = source.Name,
                 Description = source.Description,
-                Size = source.Size,
-                Color = source.Color,
-                ListPrice = source.ListPrice,
-                DealerPrice = source.DealerPrice,
+                Price = source.Price,
                 TaxType = source.TaxType,
-                Discount = source.Discount,
-                DiscountStartDate = source.DiscountStartDate,
-                DiscountEndDate = source.DiscountEndDate,
-                StockUnits = source.StockUnits,
-                SafetyStockLevel = source.SafetyStockLevel,
                 CreatedOn = source.CreatedOn,
                 LastModifiedOn = source.LastModifiedOn,
+                Status = source.Status,
+                Progress = source.Progress,
                 Thumbnail = source.Thumbnail,
                 ThumbnailSource = await BitmapTools.LoadBitmapAsync(source.Thumbnail)
             };
@@ -154,20 +173,16 @@ namespace EMS.Services
         private void UpdateProjectFromModel(Project target, ProjectModel source)
         {
             target.CategoryID = source.CategoryID;
+            target.EmployeeID = source.EmployeeID;
+            target.CustomerID = source.CustomerID;
             target.Name = source.Name;
             target.Description = source.Description;
-            target.Size = source.Size;
-            target.Color = source.Color;
-            target.ListPrice = source.ListPrice;
-            target.DealerPrice = source.DealerPrice;
+            target.Price = source.Price;
             target.TaxType = source.TaxType;
-            target.Discount = source.Discount;
-            target.DiscountStartDate = source.DiscountStartDate;
-            target.DiscountEndDate = source.DiscountEndDate;
-            target.StockUnits = source.StockUnits;
-            target.SafetyStockLevel = source.SafetyStockLevel;
             target.CreatedOn = source.CreatedOn;
             target.LastModifiedOn = source.LastModifiedOn;
+            target.Status = source.Status;
+            target.Progress = source.Progress;
             target.Picture = source.Picture;
             target.Thumbnail = source.Thumbnail;
         }

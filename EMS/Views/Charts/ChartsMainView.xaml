@@ -24,10 +24,16 @@
                     <PivotItem Header="DlSoft Gantt">
                         <local:DlhSoftChartGanttView />
                     </PivotItem>
+                    <PivotItem Header="Syncfusion Chart">
+                        <local:SyncFusionChart />
+                    </PivotItem>
+                    <PivotItem Header="Syncfusion Gantt">
+                        <local:SyncfusionGanttView />
+                    </PivotItem>
                 </Pivot>
             </PivotItem>
             <PivotItem Header="WebViews">
-                <local:WebviewView></local:WebviewView>
+                <local:WebViewTwo />
             </PivotItem>
             <PivotItem Header="Maps">
                 <local:MapsView></local:MapsView>

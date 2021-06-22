@@ -66,16 +66,16 @@ namespace EMS.Services.Infrastructure
             {
                 switch (args.Uri.AbsolutePath.ToLowerInvariant())
                 {
-                    case "Employee":
-                    case "Employees":
+                    case "employee":
+                    case "employees":
                         long employeeID = args.Uri.GetInt64Parameter("id");
                         if (employeeID > 0)
                         {
                             return ActivationInfo.Create<EmployeeDetailsViewModel>(new EmployeeDetailsArgs { EmployeeID = employeeID });
                         }
                         return ActivationInfo.Create<EmployeesViewModel>(new EmployeeListArgs());
-                    case "Customer":
-                    case "Customers":
+                    case "customer":
+                    case "customers":
                         long customerID = args.Uri.GetInt64Parameter("id");
                         if (customerID > 0)
                         {
@@ -90,16 +90,16 @@ namespace EMS.Services.Infrastructure
                             return ActivationInfo.Create<OrderDetailsViewModel>(new OrderDetailsArgs { OrderID = orderID });
                         }
                         return ActivationInfo.Create<OrdersViewModel>(new OrderListArgs());
-                    case "Project":
-                    case "Projects":
+                    case "project":
+                    case "projects":
                         long projectID = args.Uri.GetInt64Parameter("id");
                         if (projectID > 0)
                         {
                             return ActivationInfo.Create<ProjectDetailsViewModel>(new ProjectDetailsArgs { ProjectID = projectID });
                         }
                         return ActivationInfo.Create<ProjectsViewModel>(new ProjectListArgs());
-                    case "Company":
-                    case "Companys":
+                    case "company":
+                    case "companys":
                         long companyID = args.Uri.GetInt64Parameter("id");
                         if (companyID > 0)
                         {

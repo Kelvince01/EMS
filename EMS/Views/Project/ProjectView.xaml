@@ -11,10 +11,16 @@
 
     <Grid>
         <windowTitle:WindowTitle Title="{x:Bind ViewModel.Title, Mode=OneWay}" />
-
-        <section:Section IsEnabled="{x:Bind ViewModel.IsEnabled, Mode=OneWay}"
-                          Style="{StaticResource DetailsViewSection}">
-            <details:ProjectDetails x:Name="details" ViewModel="{x:Bind ViewModel, Mode=OneWay}" />
-        </section:Section>
+        <Pivot x:Name="rootPivot" Title="Project">
+            <PivotItem Header="Project Details">
+                <section:Section IsEnabled="{x:Bind ViewModel.IsEnabled, Mode=OneWay}"
+                                  Style="{StaticResource DetailsViewSection}">
+                    <details:ProjectDetails x:Name="details" ViewModel="{x:Bind ViewModel, Mode=OneWay}" />
+                </section:Section>
+            </PivotItem>
+            <PivotItem Header="Project Gantt">
+                <details:ProjectGantt />
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

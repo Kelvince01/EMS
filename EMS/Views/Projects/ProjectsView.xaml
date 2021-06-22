@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:windowTitle="using:EMS.Controls.WindowTitle" 
     xmlns:section="using:EMS.Controls.Section" 
-    xmlns:list="using:EMS.Views.Projects.List"
+    xmlns:list="using:EMS.Views.Projects.List" 
+    xmlns:parts="using:EMS.Views.Projects.Parts"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -23,14 +24,21 @@
           BorderThickness="1,0,0,0">
         <windowTitle:WindowTitle Prefix="Projects" Title="{x:Bind ViewModel.ProjectList.Title, Mode=OneWay}" />
 
-        <Grid 
-              Grid.RowSpan="{x:Bind GetRowSpan(ViewModel.ProjectList.IsMultipleSelection), Mode=OneWay}">
-            <section:Section Header="{x:Bind ViewModel.ProjectList.Title, Mode=OneWay}" 
-                              HeaderTemplate="{StaticResource ListHeaderTemplate}" 
-                              HeaderButtonGlyph="&#xE2B4;" HeaderButtonClick="OpenInNewView" 
-                              IsButtonVisible="{x:Bind ViewModel.IsMainView}">
-                <list:ProjectsList ViewModel="{x:Bind ViewModel.ProjectList}" />
-            </section:Section>
-        </Grid>
+        <Pivot x:Name="rootPivot">
+            <PivotItem Header="Projects List">
+                <Grid 
+                      Grid.RowSpan="{x:Bind GetRowSpan(ViewModel.ProjectList.IsMultipleSelection), Mode=OneWay}">
+                    <section:Section Header="{x:Bind ViewModel.ProjectList.Title, Mode=OneWay}" 
+                                      HeaderTemplate="{StaticResource ListHeaderTemplate}" 
+                                      HeaderButtonGlyph="&#xE2B4;" HeaderButtonClick="OpenInNewView" 
+                                      IsButtonVisible="{x:Bind ViewModel.IsMainView}">
+                        <list:ProjectsList ViewModel="{x:Bind ViewModel.ProjectList}" />
+                    </section:Section>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="Projects Details">
+                <parts:ProjectsDetails />
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

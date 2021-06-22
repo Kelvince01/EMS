@@ -34,7 +34,7 @@
             <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.ProjectID, Mode=OneWay}" />
 
             <TextBlock Style="{StaticResource CardHeader}" Text="List Price" />
-            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Project.ListPrice, Mode=OneWay}" />
+            <TextBlock Style="{StaticResource CardText}" Text="{x:Bind Item.Project.Price, Mode=OneWay}" />
 
         </StackPanel>
     </ScrollViewer>
