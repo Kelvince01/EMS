@@ -9,7 +9,27 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid>
-
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <Border Background="ForestGreen" Padding="10" Margin="10" Height="150" Width="250" CornerRadius="5">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="White" FontFamily="Helvetica" FontSize="20" FontWeight="Medium">Projects Done</TextBlock>
+                <TextBlock Foreground="White"></TextBlock>
+                <TextBlock Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center">10</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Background="Orange" Padding="10" Margin="10" Height="150" Width="250" CornerRadius="5">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="White" FontFamily="Helvetica" FontSize="20" FontWeight="Medium">Projects In Progress</TextBlock>
+                <TextBlock Foreground="White"></TextBlock>
+                <TextBlock Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center">10</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border Background="Red" Padding="10" Margin="10" Height="150" Width="250" CornerRadius="5">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="White" FontFamily="Helvetica" FontSize="20" FontWeight="Medium">Projects Cancelled</TextBlock>
+                <TextBlock Foreground="White"></TextBlock>
+                <TextBlock Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center">10</TextBlock>
+            </StackPanel>
+        </Border>
+    </StackPanel>
 </UserControl>

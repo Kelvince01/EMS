@@ -5,11 +5,24 @@
     xmlns:local="using:EMS.Views.Companys.Details"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:windowTitle="using:EMS.Controls.WindowTitle"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
     <Grid>
+        <StackPanel Margin="24,12" MaxWidth="620" HorizontalAlignment="Center" Padding="20">
+            <windowTitle:WindowTitle Title="Settings" />
+            <Image Width="220" 
+                   HorizontalAlignment="Center"
+                   Source="ms-appx:///Assets/AppLogo.png" 
+                   Stretch="UniformToFill" />
 
+            <StackPanel Margin="0,12">
+                <TextBlock Text="Employee Management System"/>
+                <TextBlock Text="1.0.0" />
+                <TextBlock><Hyperlink NavigateUri="https://github.com/Kelvince01/EMS">https://github.com/Kelvince01/EMS</Hyperlink></TextBlock>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

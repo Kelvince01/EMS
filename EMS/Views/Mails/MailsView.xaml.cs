@@ -2,6 +2,8 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using EMS.Extensions;
+using EMS.Tools;
+using EMS.Views.Mails.Parts;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -15,39 +17,83 @@ namespace EMS.Views.Mails
         public MailsView()
         {
             this.InitializeComponent();
+            this.Loaded += new RoutedEventHandler(AppRoot_Loaded);
         }
 
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        void AppRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadEmailMessagesFromOffice365();
-        }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            LoadEmailMessagesFromOffice365();
-        }
-
-        private void MasterListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
+            if (!HelperUtils.AreSettingsAvailable())
+            {
+                ContentFrame.Navigate(typeof(MailSettingsPage));
+            }
+            else
+                ContentFrame.Navigate(typeof(MailMainPage));
         }
 
-
-        private async void LoadEmailMessagesFromOffice365()
+        private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            MasterListView.ItemsSource = null;
-            progressRing.IsActive = true;
 
-            var outlookClient = await AuthUtil.EnsureClient();
+            // set the initial SelectedItem 
+            foreach (NavigationViewItemBase item in NavView.MenuItems)
+            {
+                if (item is NavigationViewItem && item.Tag.ToString() == "mail")
+                {
+                    NavView.SelectedItem = item;
+                    break;
+                }
+            }
+        }
 
-            var messages = await
-                outlookClient.Me.Folders["Inbox"].Messages.
-                    OrderByDescending(m => m.DateTimeReceived).Take(50).
-                    ExecuteAsync();
+        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                ContentFrame.Navigate(typeof(MailSettingsPage));
+            }
+            else
+            {
+                switch (args.InvokedItem)
+                {
+                    case "Home":
+                        MailHandler.ReplyFlag = false;
+                        MailHandler.ForwardFlag = false;
+                        ContentFrame.Navigate(typeof(MailMainPage));
+                        break;
 
-            progressRing.IsActive = true;
+                    case "Send Mail":
+                        MailHandler.ReplyFlag = false;
+                        MailHandler.ForwardFlag = false;
+                        ContentFrame.Navigate(typeof(CreateMailPage));
+                        break;
+                }
+            }
+        }
 
-            MasterListView.ItemsSource = messages.CurrentPage;
+        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+                ContentFrame.Navigate(typeof(MailSettingsPage));
+            }
+            else
+            {
+                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+
+                switch (item.Tag)
+                {
+                    case "home":
+                        MailHandler.ReplyFlag = false;
+                        MailHandler.ForwardFlag = false;
+                        ContentFrame.Navigate(typeof(MailMainPage));
+                        break;
+
+                    case "mail":
+                        MailHandler.ReplyFlag = false;
+                        MailHandler.ForwardFlag = false;
+                        ContentFrame.Navigate(typeof(CreateMailPage));
+                        break;
+                }
+            }
         }
     }
 }

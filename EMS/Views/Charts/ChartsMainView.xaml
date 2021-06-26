@@ -37,6 +37,7 @@
             </PivotItem>
             <PivotItem Header="Maps">
                 <local:MapsView></local:MapsView>
+                <!--local:SyncfusionMapView></local:SyncfusionMapView-->
             </PivotItem>
         </Pivot>
     </Grid>

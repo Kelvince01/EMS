@@ -42,12 +42,12 @@ namespace EMS.ViewModels.ViewModels.Shell
         private readonly NavigationItem OrdersItem = new NavigationItem(0xE8A1, "Orders", typeof(OrdersViewModel));
         private readonly NavigationItem ProjectsItem = new NavigationItem(0xE781, "Projects", typeof(ProjectsViewModel));
         private readonly NavigationItem AppLogsItem = new NavigationItem(0xE7BA, "Activity Log", typeof(AppLogsViewModel));
-        private readonly NavigationItem SettingsItem = new NavigationItem(0x0000, "Settings", typeof(SettingsViewModel));
-        private readonly NavigationItem MailsItem = new NavigationItem(0x0000, "Mails", typeof(MailsViewModel));
+        private readonly NavigationItem SettingsItem = new NavigationItem(0x2699, "Settings", typeof(SettingsViewModel));
+        private readonly NavigationItem MailsItem = new NavigationItem(0x1F4E7, "Mails", typeof(MailsViewModel));
         private readonly NavigationItem CompanyItem = new NavigationItem(0x0000, "Company", typeof(CompanyViewModel));
-        private readonly NavigationItem ChartsItem = new NavigationItem(0x0000, "Charts", typeof(ChartsViewModel));
-        private readonly NavigationItem ReportsItem = new NavigationItem(0x0000, "Charts", typeof(ReportsViewModel));
-        private readonly NavigationItem StatisticsItem = new NavigationItem(0x0000, "Charts", typeof(StatisticsViewModel));
+        private readonly NavigationItem ChartsItem = new NavigationItem(0x1F5E0, "Charts", typeof(ChartsViewModel));
+        private readonly NavigationItem ReportsItem = new NavigationItem(0x0000, "Reports", typeof(ReportsViewModel));
+        private readonly NavigationItem StatisticsItem = new NavigationItem(0x0000, "Statistics", typeof(StatisticsViewModel));
 
         public MainShellViewModel(ILoginService loginService, ICommonServices commonServices) : base(loginService, commonServices)
         {

@@ -1,0 +1,132 @@
+﻿<Page
+    x:Class="EMS.Views.Mails.Parts.MailSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EMS.Views.Mails.Parts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:EMS.Data.Data"
+    xmlns:converters="using:EMS.Converters"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <converters:ThumbnailToImageConverter x:Key="ThumbnailToImageConverter" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer>
+            <Grid Grid.Column="0" Margin="5, 25, 15, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+                <CommandBar Grid.Row="0" OverflowButtonVisibility="Collapsed" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+
+                    <CommandBar.PrimaryCommands>
+                        <AppBarButton Margin="0,0,50,0" ToolTipService.ToolTip="Refresh mail" HorizontalAlignment="Left" Name="AppBarButtonRefreshMail" Icon="Refresh" Label="Refresh mail" 
+                                      Click="AppBarButton_Click" ></AppBarButton>
+                    </CommandBar.PrimaryCommands>
+                    <CommandBar.Content>
+                        <AutoSuggestBox
+                        x:Name="asb"
+                        PlaceholderText="Search message"                    
+                        QueryIcon="Find"                      
+                        Margin="8"
+                        MinWidth="200"
+                        HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted">
+                        </AutoSuggestBox>
+                    </CommandBar.Content>
+                </CommandBar>
+
+                <ListView Name="MailListView" Width="340" Height="Auto" ItemsSource="{x:Bind MailHeaderList, Mode=OneWay}" 
+                           Margin="10,55,20,20" ItemClick="MailListView_ItemClicked" 
+                           IsItemClickEnabled="true"  SelectionMode="single"  
+                           BorderThickness="0.5"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:MailHeader">
+                            <Grid  Margin="0,0,0,25">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Name="From" FontSize="17"  Grid.Row="0" Text="{x:Bind From}"  FontWeight="Bold" TextTrimming="CharacterEllipsis" ></TextBlock>
+                                <TextBlock Name="Subject" FontSize="16" Grid.Row="1" Text="{x:Bind Subject}" TextTrimming="CharacterEllipsis"></TextBlock>
+                                <TextBlock Name="Date" FontSize="15"  Grid.Row="2" Text="{x:Bind Date}" ></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid  Grid.Column="1" Margin="25 25 25 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CommandBar Grid.Row="0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <AppBarButton Name="AppBarButtonReplyMail" ToolTipService.ToolTip="Reply to mail" 
+                              Icon="MailReply" Label="Reply to mail" Click="AppBarButton_Click"></AppBarButton>
+                <AppBarButton Name="AppBarButtonForwardMail" Icon="MailForward" 
+                              ToolTipService.ToolTip="Forward mail" Label="Forward mail" 
+                              Click="AppBarButton_Click" ></AppBarButton>
+                <AppBarButton Name="AppBarButtonDeleteMail" Icon="Delete" Label="Delete mail" 
+                              ToolTipService.ToolTip="Delete mail" Click="AppBarButton_Click" ></AppBarButton>
+            </CommandBar>
+
+            <TextBlock  Grid.Row="1" FontSize="16" FontWeight="Bold" x:Name="MessageSubject" 
+                        Margin="0,10,0,0" VerticalAlignment="Top"/>
+            <TextBlock  Grid.Row="2" FontSize="14" x:Name="MessageFrom"  VerticalAlignment="Top"/>
+            <TextBlock  Grid.Row="3" FontSize="14" x:Name="MessageDate"  VerticalAlignment="Top"/>
+
+            <ListView  x:Name="AttachedFilesListView"  
+                       Height="60"  Margin="0,20,0,0" VerticalAlignment="Top" Grid.Row="4"
+                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.IsHorizontalRailEnabled="True" DoubleTapped="AttachedFilesListView_DoubleClick">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel RightTapped="ListView_RightTapped">
+                            <Image Source="{Binding Thumbnail, Converter={StaticResource ThumbnailToImageConverter}}" Height="40" Width="40" />
+                            <TextBlock FontSize="7" Text="{Binding FileName}"  />
+                            <FlyoutBase.AttachedFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Save" Click="Save_Click" />
+                                </MenuFlyout>
+                            </FlyoutBase.AttachedFlyout>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <WebView Grid.Row="5" x:Name="webView"  MinWidth="700"  VerticalAlignment="Top" Margin="0,20,0,0"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"  Height="774" 
+                      />
+        </Grid>
+
+    </Grid>
+</Page>

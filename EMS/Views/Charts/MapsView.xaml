@@ -25,6 +25,7 @@
             <Button Name="SpaceNeedle" Click="SpaceNeedle_Click">Space Needle</Button>
             <Button Name="showStreetsideViewBtn" Margin="10,0" Click="ShowStreetsideView_OnClick">Street Side View</Button>
             <Button Name="display3DLocationBtn" Click="Display3DLocation_OnClick">Display 3D Location</Button>
+            <Button Name="displayNeedleBtn" Click="DisplayNeedleBtn_OnClick" Margin="10,0,0,0">Display Space Needle</Button>
         </StackPanel>
         <maps:MapControl x:Name="mapControl" Loaded="Map_LoadedAsync" Grid.Row="1"
                          MapServiceToken="OlXsunNHhHQtPDIDi6Nt~URH85zoEoZlsS0awqdQvzw~AshBLdoU_0xgmPX5D4Hc2ehxFUmzDsW3fU2ZMwK4yX9_yKiQHNGHLrnhzT5S7SYN"
